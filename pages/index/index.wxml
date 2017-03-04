@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<import src="hero_item.wxml"/>
 <view class="container">
   <view  bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
@@ -216,9 +217,10 @@
   	</view>
   </view>
 
+
   <!--英雄选择面板-->
-  <scroll-view id="HeroPanel" scroll-y="true" wx:if="{{heropicker=='ON'}}" class="pop-up-layer" bindtap="heroPickerHandler">
-  	<block wx:for="{{heros}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
+  <scroll-view id="HeroPanel" scroll-y="true" wx:if="{{heropicker=='ON'}}" class="pop-up-layer" bindtap="closepanel">
+  	<block wx:for="{{heros}}" wx:key="idx" wx:for-index="idx" wx:for-item="item">
 		<view wx:if="{{idx == 'axe'}}" class="split-block">
 			力量
 		</view>
@@ -228,8 +230,8 @@
 		<view wx:if="{{idx == 'bane' }}" class="split-block">
 			智力
 		</view>
-		<view class="hero_item">
-			<block wx:if="{{itemName.legion1}}">			
+		<template is="hero_item" data="{{...item}}"></template>
+			<!--<block wx:if="{{itemName.legion1}}">			
 				<image id="{{idx}}" class="icon-list-small picked" src="{{itemName.url}}"></image>
 				<view id="{{idx}}" class="tag legion1tag">1</view>
 			</block>
@@ -237,8 +239,8 @@
 				<image id="{{idx}}" class="icon-list-small picked" src="{{itemName.url}}"></image>
 				<view id="{{idx}}" class="tag legion2tag">2</view>
 			</block>
-	  		<image wx:else id="{{idx}}" class="icon-list-small" src="{{itemName.url}}"></image>
-  		</view>
+	  		<image wx:else id="{{idx}}" class="icon-list-small" src="{{itemName.url}}"></image>-->
+
   	</block>
   </scroll-view>
 </view>
