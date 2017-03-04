@@ -4,6 +4,8 @@
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>
+  
+  <!--友方队伍-->
   <view class="table-like-view" data-legion="1" bindtap="openHeroPanel">
   		<view class="table-like-row">
   			<block wx:for="{{legion1}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
@@ -14,6 +16,8 @@
 	    </view>
   </view>
   <text>VS</text>
+
+  <!--敌方队伍-->
   <view class="table-like-view" data-legion="2" bindtap="openHeroPanel">
   		<view class="table-like-row">
   			<block wx:for="{{legion2}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
@@ -23,6 +27,8 @@
   			</block>
 	    </view>
   </view>
+
+  <!--对战分析-->
   <view class="table-like-view">
   	<view class="table-like-column">
   		<view class="table-like-cell">
@@ -46,7 +52,7 @@
 	    </view>
 	    <view class="table-like-row">
 	    	<view class="table-like-cell small-cell">
-	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    		<image id="mkc" class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
 	    	</view>
 	    	<view class="table-like-cell small-cell">
 	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
@@ -168,6 +174,9 @@
     	</view>
 	</view>
   </view>
+
+
+  <!--推荐列表-->
   <view class="table-like-view-row-first">
   	<view class="table-like-row">
   		<view class="table-like-cell col1">
@@ -206,7 +215,9 @@
 		</view>
   	</view>
   </view>
-  <scroll-view scroll-y="true" wx:if="{{heropicker=='ON'}}" class="pop-up-layer" bindtap="heroPickerHandler">
+
+  <!--英雄选择面板-->
+  <scroll-view id="HeroPanel" scroll-y="true" wx:if="{{heropicker=='ON'}}" class="pop-up-layer" bindtap="heroPickerHandler">
   	<block wx:for="{{heros}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
 		<view wx:if="{{idx == 'axe'}}" class="split-block">
 			力量
@@ -220,11 +231,11 @@
 		<view class="hero_item">
 			<block wx:if="{{itemName.legion1}}">			
 				<image id="{{idx}}" class="icon-list-small picked" src="{{itemName.url}}"></image>
-				<view class="tag legion1tag">1</view>
+				<view id="{{idx}}" class="tag legion1tag">1</view>
 			</block>
 			<block wx:elif="{{itemName.legion2}}">	
 				<image id="{{idx}}" class="icon-list-small picked" src="{{itemName.url}}"></image>
-				<view class="tag legion2tag">2</view>
+				<view id="{{idx}}" class="tag legion2tag">2</view>
 			</block>
 	  		<image wx:else id="{{idx}}" class="icon-list-small" src="{{itemName.url}}"></image>
   		</view>

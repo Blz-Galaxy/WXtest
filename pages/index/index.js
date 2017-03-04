@@ -1,7 +1,8 @@
 //index.js
 //获取应用实例
 // app.js
-var heroes = { axe: { url: 'http://cdn.dota2.com/apps/dota2/images/heroes/axe_hphover.png' },
+var heroes = {
+  axe: { url: 'http://cdn.dota2.com/apps/dota2/images/heroes/axe_hphover.png' },
   earthshaker: { url: 'http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png' },
   pudge: { url: 'http://cdn.dota2.com/apps/dota2/images/heroes/pudge_hphover.png' },
   sand_king: { url: 'http://cdn.dota2.com/apps/dota2/images/heroes/sand_king_hphover.png' },
@@ -113,24 +114,28 @@ var heroes = { axe: { url: 'http://cdn.dota2.com/apps/dota2/images/heroes/axe_hp
   skywrath_mage: { url: 'http://cdn.dota2.com/apps/dota2/images/heroes/skywrath_mage_hphover.png' },
   techies: { url: 'http://cdn.dota2.com/apps/dota2/images/heroes/techies_hphover.png' },
   oracle: { url: 'http://cdn.dota2.com/apps/dota2/images/heroes/oracle_hphover.png' },
-  winter_wyvern: { url: 'http://cdn.dota2.com/apps/dota2/images/heroes/winter_wyvern_hphover.png' } }
+  winter_wyvern: { url: 'http://cdn.dota2.com/apps/dota2/images/heroes/winter_wyvern_hphover.png' }
+}
+
 var app = getApp()
 Page({
   data: {
     userInfo: {},
     heropicker: "OFF",
-    legion1: [undefined, undefined, undefined,undefined,undefined],
-    legion2: [undefined, undefined, undefined,undefined,undefined],
+    legion1: [undefined, undefined, undefined, undefined, undefined],
+    legion2: [undefined, undefined, undefined, undefined, undefined],
     legionOnHandle: 1,
     heros: heroes,
   },
+
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
-  openHeroPanel:function(event){
+
+  openHeroPanel: function (event) {
     var legion = event.currentTarget.dataset.legion;
     console.log(legion)
     this.setData({
@@ -138,22 +143,24 @@ Page({
       legionOnHandle: legion
     })
   },
-  heroPickerHandler: function(event){
-    if(event.target.id){
-      var id = event.target.id,
-          heros = this.data.heros,
-          legion_num = this.data.legionOnHandle ,
-          legion_old = legion_num == 1 ? this.data.legion1: this.data.legion2,
-          legion_other = legion_num == 1 ? this.data.legion2: this.data.legion1,
-          idx = legion_old.indexOf(id),
-          legion_new = [],
-          change = false,
-          legion_state = false;
 
-      if(idx == -1){
-        if(legion_other.indexOf(id)==-1){
-           for(var i =0;i<legion_old.length;i++){
-            if(!legion_old[i]){
+  heroPickerHandler: function (event) {
+    console.log("id=" + event.target.id);
+    if (event.target.id && event.target.id != "HeroPanel") {
+      var id = event.target.id,
+        heros = this.data.heros,
+        legion_num = this.data.legionOnHandle,
+        legion_old = legion_num == 1 ? this.data.legion1 : this.data.legion2,
+        legion_other = legion_num == 1 ? this.data.legion2 : this.data.legion1,
+        idx = legion_old.indexOf(id),
+        legion_new = [],
+        change = false,
+        legion_state = false;
+
+      if (idx == -1) {
+        if (legion_other.indexOf(id) == -1) {
+          for (var i = 0; i < legion_old.length; i++) {
+            if (!legion_old[i]) {
               legion_old[i] = id;
               change = true;
               legion_state = true;
@@ -161,14 +168,14 @@ Page({
             }
           }
         }
-      }else{
+      } else {
         legion_old[idx] = undefined;
         change = true;
         legion_state = false;
       }
 
-      if(change){
-        for(var i =legion_old.length-1;i>=0;i--){
+      if (change) {
+        for (var i = legion_old.length - 1; i >= 0; i--) {
           legion_new[i] = legion_old[i];
         }
         var obj = {};
@@ -178,27 +185,29 @@ Page({
         var hero_new = {
           url: hero.url
         }
-        hero_new["legion"+legion_num] = legion_state;
+        hero_new["legion" + legion_num] = legion_state;
         new_heros[id] = hero_new;
-        obj[legion_num == 1?"legion1":"legion2"] = legion_new;
+        obj[legion_num == 1 ? "legion1" : "legion2"] = legion_new;
         obj.heros = new_heros;
         this.setData(obj);
       }
-    }else{
+    } 
+    
+    if(event.target.id=="HeroPanel") {
       this.setData({
         "heropicker": "OFF"
       })
     }
-   
   },
+
   onLoad: function () {
     console.log('onLoad')
     var that = this
     //调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo){
+    app.getUserInfo(function (userInfo) {
       //更新数据
       that.setData({
-        userInfo:userInfo
+        userInfo: userInfo
       })
     });
 
