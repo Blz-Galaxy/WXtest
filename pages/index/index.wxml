@@ -4,7 +4,230 @@
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="table-like-view" data-legion="1" bindtap="openHeroPanel">
+  		<view class="table-like-row">
+  			<block wx:for="{{legion1}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
+  				<view class="table-like-cell" style="border-color: green;">
+  					<image wx:if="{{itemName}}" class="icon" src="{{heros[itemName].url}}"></image>
+  				</view>
+  			</block>
+	    </view>
   </view>
+  <text>VS</text>
+  <view class="table-like-view" data-legion="2" bindtap="openHeroPanel">
+  		<view class="table-like-row">
+  			<block wx:for="{{legion2}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
+  				<view class="table-like-cell" style="border-color: red;">
+  					<image  wx:if="{{itemName}}" class="icon" src="{{heros[itemName].url}}"></image>
+  				</view>
+  			</block>
+	    </view>
+  </view>
+  <view class="table-like-view">
+  	<view class="table-like-column">
+  		<view class="table-like-cell">
+    		
+    	</view>
+
+		<block wx:for="{{legion2}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
+			<view class="table-like-cell" style="border-color: red;">
+				<image wx:if="{{itemName}}" class="icon" src="{{heros[itemName].url}}"></image>
+			</view>
+		</block>
+
+  	</view>
+  	<view class="table-like-column">
+	    <view class="table-like-row">
+	    	<block wx:for="{{legion1}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
+  				<view class="table-like-cell" style="border-color: green;">
+  					<image wx:if="{{itemName}}" class="icon" src="{{heros[itemName].url}}"></image>
+  				</view>
+  			</block>
+	    </view>
+	    <view class="table-like-row">
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    </view>
+	    <view class="table-like-row">
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    </view>
+	    <view class="table-like-row">
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    </view>
+	    <view class="table-like-row">
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    </view>
+	    <view class="table-like-row">
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    	<view class="table-like-cell small-cell">
+	    		<image class="icon" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+	    	</view>
+	    </view>
+	    	<view class="table-like-row">
+		  		<view class="table-like-cell" style="border-color: green;">
+		    		3
+		    	</view>
+		    	<view class="table-like-cell" style="border-color: green;">
+		    		4
+		    	</view>
+		    	<view class="table-like-cell" style="border-color: green;">
+		    		5
+		    	</view>
+		    	<view class="table-like-cell" style="border-color: green;">
+		    		6
+		    	</view>
+		    	<view class="table-like-cell" style="border-color: green;">
+		    		2
+		    	</view>
+			</view>
+	</view>
+	<view class="table-like-column">
+		<view class="table-like-cell">
+    		
+    	</view>
+  		<view class="table-like-cell" style="border-color: red;">
+    		3
+    	</view>
+    	<view class="table-like-cell" style="border-color: red;">
+    		4
+    	</view>
+    	<view class="table-like-cell" style="border-color: red;">
+    		5
+    	</view>
+    	<view class="table-like-cell" style="border-color: red;">
+    		6
+    	</view>
+    	<view class="table-like-cell" style="border-color: red;">
+    		2
+    	</view>
+	</view>
+  </view>
+  <view class="table-like-view-row-first">
+  	<view class="table-like-row">
+  		<view class="table-like-cell col1">
+			英雄
+		</view>
+		<view class="table-like-cell col2">
+			克制英雄
+		</view>
+		<view class="table-like-cell col3">
+			辅助英雄
+		</view>
+		<view class="table-like-cell col4">
+			推荐指数
+		</view>
+  	</view>
+  	<view class="table-like-row rows">
+  		<view class="table-like-cell col1">
+			<image class="icon-large" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+		</view>
+		<view class="table-like-cell col2">
+			<image class="icon-small" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+			<image class="icon-small" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+			<image class="icon-small" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+			<image class="icon-small" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+			<image class="icon-small" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+		</view>
+		<view class="table-like-cell col3">
+			<image class="icon-small" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+			<image class="icon-small" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+			<image class="icon-small" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+			<image class="icon-small" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+			<image class="icon-small" src="http://cdn.dota2.com/apps/dota2/images/heroes/earthshaker_hphover.png"></image>
+		</view>
+		<view class="table-like-cell col4">
+			3.0
+		</view>
+  	</view>
+  </view>
+  <scroll-view scroll-y="true" wx:if="{{heropicker=='ON'}}" class="pop-up-layer" bindtap="heroPickerHandler">
+  	<block wx:for="{{heros}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
+		<view wx:if="{{idx == 'axe'}}" class="split-block">
+			力量
+		</view>
+		<view wx:if="{{idx == 'antimage' }}" class="split-block">
+			敏捷
+		</view>
+		<view wx:if="{{idx == 'bane' }}" class="split-block">
+			智力
+		</view>
+		<view class="hero_item">
+			<block wx:if="{{itemName.legion1}}">			
+				<image id="{{idx}}" class="icon-list-small picked" src="{{itemName.url}}"></image>
+				<view class="tag legion1tag">1</view>
+			</block>
+			<block wx:elif="{{itemName.legion2}}">	
+				<image id="{{idx}}" class="icon-list-small picked" src="{{itemName.url}}"></image>
+				<view class="tag legion2tag">2</view>
+			</block>
+	  		<image wx:else id="{{idx}}" class="icon-list-small" src="{{itemName.url}}"></image>
+  		</view>
+  	</block>
+  </scroll-view>
 </view>

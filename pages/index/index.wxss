@@ -1,21 +1,153 @@
 /**index.wxss**/
 .userinfo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
+  width: 64rpx;
+  height: 64rpx;
+  margin: 5rpx 20rpx;
   border-radius: 50%;
 }
 
 .userinfo-nickname {
-  color: #aaa;
+  font-size: 32rpx;
 }
 
-.usermotto {
-  margin-top: 200px;
+.table-like-view{
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: center;
+	margin: 10rpx 0;
+}
+.table-like-view-row-first{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	margin: 10rpx 0;
+}
+.table-like-view + .table-like-view{
+	margin-top: 30rpx;
+}
+.table-like-column{
+	display: flex;
+	flex-direction: column;
+}
+.table-like-row{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+.table-like-cell{
+	box-sizing: border-box;
+	width:  98rpx;
+	height: 60rpx;
+	padding: 4rpx;
+	display: flex;
+	flex-wrap:wrap;
+	align-items: center;
+	justify-content: center;
+	line-height: 52rpx;
+	font-size: 30rpx;
+	text-align: center;
+	border-width: 1rpx;
+	border-style: solid;
+	border-color: transparent;
+	font-size: 24rpx;
+}
+.rows+.rows{
+	margin-top: 10rpx;
+}
+.rows > .col1,
+.rows > .col2,
+.rows > .col3,
+.rows > .col4{
+	height: 80rpx;
+}
+.icon-large{
+	width:  100rpx;
+	height: 56rpx;
+}
+.col1{
+	width: 108rpx;
+}
+.col2{
+	width: 240rpx
+}
+.col3{
+	width: 240rpx
+}
+.col4{
+	width: 108rpx
+}
+.table-like-cell.small-cell{
+	padding: 8rpx;
+}	
+.table-like-cell.small-cell > .icon{
+	width:  82rpx;
+	height: 44rpx;
+}
+.icon{
+	width:  86rpx;
+	height: 48rpx;
+	border-radius: 5px;
+}
+.icon-small{
+	width:  71rpx;
+	height: 40rpx;
+}
+
+.pop-up-layer{
+	position: absolute;
+	padding: 35rpx 0;
+	width: 90%;
+	height: 90%;
+	margin: 5%;
+	background-color: #191919;
+	left: 0;
+	top: 0;
+	box-shadow: 0 0 2px #000;
+	border:1px solid #eee;
+	border-radius: 10rpx;
+}
+.split-block{
+	width: 100%;
+	height: 50rpx;
+	margin: 15rpx 0;
+}
+.hero_item{
+	display: inline-block;
+	position: relative;
+}
+.icon-list-small{
+	width:  127rpx;
+	height: 71rpx;
+}
+.picked{
+	filter: grayscale(1);
+}
+.tag{
+	position: absolute;
+	width: 30rpx;
+	height: 30rpx;
+	border-radius: 100%;
+	background-color: red;
+	left: 50%;
+	top: 50%;
+	margin-top: -15rpx;
+	margin-left: -15rpx;
+	font-size: 24rpx;
+	line-height: 30rpx;
+}
+.legion1tag{
+	background-color: red;
+}
+.legion2tag{
+	background-color: green;
 }
