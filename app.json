@@ -6,7 +6,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#333",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "Dota2 Assistant",
     "navigationBarTextStyle":"#ddd",
     "backgroundColor": "#212121"
   }
