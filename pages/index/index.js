@@ -491,10 +491,10 @@ Page({
             model_old = heros[id],
             legion_num = this.data.legionOnHandle,
             legion_old = legion_num == 1 ? this.data.legion1 : this.data.legion2,
-            legion_new = [],
+            legion_new = [undefined, undefined, undefined, undefined, undefined],
             change = false;
 
-        for (var i = legion_old.length - 1; i >= 0; i--) {
+        for (var i = 4; i >= 0; i--) {
             legion_new[i] = legion_old[i];
         }
 
@@ -505,7 +505,7 @@ Page({
                 legion_new[legion_new.indexOf(id)] = undefined;
             }
         } else {
-            for (var i = 0; i < legion_new.length; i++) {
+            for (var i = 0; i < 5; i++) {
                 if (!legion_new[i]) {
                     legion_new[i] = id;
                     change = true;
@@ -542,7 +542,7 @@ Page({
                 legion_old = legion_num == 1 ? this.data.legion1 : this.data.legion2,
                 legion_other = legion_num == 1 ? this.data.legion2 : this.data.legion1,
                 idx = legion_old.indexOf(id),
-                legion_new = [],
+                legion_new = [undefined, undefined, undefined, undefined, undefined],
                 change = false,
                 legion_state = false;
 
