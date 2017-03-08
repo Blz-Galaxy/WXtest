@@ -1,18 +1,24 @@
 /**index.wxss**/
 .userinfo {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 20rpx;
 }
 
-.userinfo-avatar {
-  width: 64rpx;
-  height: 64rpx;
-  margin: 5rpx 20rpx;
-  border-radius: 50%;
-}
 
+.dota2logo{
+	width:  180rpx;
+	height: 84rpx;
+	align-self: center;
+	box-shadow: 0 0 20rpx rgba(0,0,0,0.8);
+
+}
+.vslogo{
+	width: 64rpx;
+	height: 64rpx;
+}
 .userinfo-nickname {
   font-size: 32rpx;
 }
@@ -60,6 +66,38 @@
 	border-style: solid;
 	border-color: transparent;
 	font-size: 24rpx;
+	overflow: hidden;
+
+}
+.hero-avatar{
+	-webkit-transform: skew(15deg);
+	   -moz-transform: skew(15deg);
+	     -o-transform: skew(15deg);
+	box-shadow: 0 0 20rpx rgba(0,0,0,0.8);
+}
+.hero-avatar > .icon{
+	-webkit-transform: skew(-15deg) scale(1.2);
+	   -moz-transform: skew(-15deg) scale(1.2);
+	     -o-transform: skew(-15deg) scale(1.2);
+
+}
+.hero-avatar-inverse{
+	-webkit-transform: skew(-15deg);
+	   -moz-transform: skew(-15deg);
+	     -o-transform: skew(-15deg);
+	box-shadow: 0 0 20rpx rgba(0,0,0,0.8);     
+}
+.hero-avatar-inverse > .icon{
+	-webkit-transform: skew(15deg) scale(1.2);
+	   -moz-transform: skew(15deg) scale(1.2);
+	     -o-transform: skew(15deg) scale(1.2);
+
+}
+.hero-avatar + .hero-avatar{
+	margin-left: 10rpx;
+}
+.hero-avatar-inverse + .hero-avatar-inverse{
+	margin-left: 10rpx;
 }
 .rows+.rows{
 	margin-top: 10rpx;
@@ -104,21 +142,26 @@
 }
 
 .pop-up-layer{
-	position: absolute;
+	position: fixed;
+	top: 5%;
+	left: 5%;
 	padding: 35rpx 0;
 	width: 90%;
 	height: 90%;
-	margin: 5%;
 	background-color: #191919;
-	left: 0;
-	top: 0;
 	box-shadow: 0 0 2px #000;
 	border:1px solid #eee;
 	border-radius: 10rpx;
+	box-sizing: border-box;
 }
 .split-block{
-	height: 50rpx;
-	margin: 15rpx 0;
+	position: relative;
+	left: 50%;
+	width: 48rpx;
+	height: 48rpx;
+	margin: 20rpx 0;
+	margin-left: -24rpx;
+
 }
 .hero_item{
 	display: inline-block;
@@ -127,6 +170,10 @@
 .icon-list-small{
 	width:  127rpx;
 	height: 71rpx;
+	transition: all .2s;
+	-webkit-transition: all 1s;
+	   -moz-transition: all 1s;
+	     -o-transition: all 1s;
 }
 .picked{
 	filter: grayscale(1);
@@ -149,4 +196,8 @@
 }
 .legion2tag{
 	background-color: green;
+}
+.property-icon{
+	width: 48rpx;
+	height: 48rpx;
 }

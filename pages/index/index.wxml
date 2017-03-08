@@ -1,28 +1,30 @@
 <!--index.wxml-->
 <import src="hero_item.wxml"/>
 <view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
+ <!-- <view  bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>-->
+  <view class="userinfo">
+  	<image class="dota2logo" src="../../image/header.jpg"></image>
   </view>
-  
   <!--友方队伍-->
   <view class="table-like-view" data-legion="1" bindtap="openHeroPanel">
   		<view class="table-like-row">
   			<block wx:for="{{legion1}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
-  				<view class="table-like-cell" style="border-color: green;">
+  				<view class="table-like-cell hero-avatar" style="border-color: green;">
   					<image wx:if="{{itemName}}" class="icon" src="{{heros[itemName].url}}"></image>
   				</view>
   			</block>
 	    </view>
   </view>
-  <text>VS</text>
+  <image class="vslogo" src="../../image/VS.png"></image>
 
   <!--敌方队伍-->
   <view class="table-like-view" data-legion="2" bindtap="openHeroPanel">
   		<view class="table-like-row">
   			<block wx:for="{{legion2}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
-  				<view class="table-like-cell" style="border-color: red;">
+  				<view class="table-like-cell hero-avatar-inverse" style="border-color: red;">
   					<image  wx:if="{{itemName}}" class="icon" src="{{heros[itemName].url}}"></image>
   				</view>
   			</block>
@@ -222,13 +224,13 @@
   <scroll-view id="HeroPanel" scroll-y="true" wx:if="{{heropicker=='ON'}}" class="pop-up-layer" bindtap="closepanel">
   	<block wx:for="{{heros}}" wx:key="idx" wx:for-index="idx" wx:for-item="item">
 		<view wx:if="{{idx == 'axe'}}" class="split-block">
-			力量
+			<image class="property-icon" src="../../image/overviewicon_str.png"></image>
 		</view>
 		<view wx:if="{{idx == 'antimage' }}" class="split-block">
-			敏捷
+			<image class="property-icon" src="../../image/overviewicon_agi.png"></image>
 		</view>
 		<view wx:if="{{idx == 'bane' }}" class="split-block">
-			智力
+			<image class="property-icon" src="../../image/overviewicon_int.png"></image>
 		</view>
 		<template is="hero_item" data="{{...item}}"></template>
 			<!--<block wx:if="{{itemName.legion1}}">			
