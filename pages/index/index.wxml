@@ -5,14 +5,14 @@
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>-->
-  <view class="userinfo">
+  <!--<view class="userinfo">
   	<image class="dota2logo" src="../../image/header.jpg"></image>
-  </view>
+  </view>-->
   <!--友方队伍-->
   <view class="table-like-view" data-legion="1" bindtap="openHeroPanel">
   		<view class="table-like-row">
   			<block wx:for="{{legion1}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
-  				<view class="table-like-cell hero-avatar" style="border-color: green;">
+  				<view class="table-like-cell hero-avatar legion1-style" style="border-color: green;">
   					<image wx:if="{{itemName}}" class="icon" src="{{heros[itemName].url}}"></image>
   				</view>
   			</block>
@@ -24,7 +24,7 @@
   <view class="table-like-view" data-legion="2" bindtap="openHeroPanel">
   		<view class="table-like-row">
   			<block wx:for="{{legion2}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
-  				<view class="table-like-cell hero-avatar-inverse" style="border-color: red;">
+  				<view class="table-like-cell hero-avatar-inverse legion2-style" style="border-color: red;">
   					<image  wx:if="{{itemName}}" class="icon" src="{{heros[itemName].url}}"></image>
   				</view>
   			</block>
@@ -39,7 +39,7 @@
     	</view>
 
 		<block wx:for="{{legion2}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
-			<view class="table-like-cell" style="border-color: red;">
+			<view class="table-like-cell legion2-style" style="border-color: red;">
 				<image wx:if="{{itemName}}" class="icon" src="{{heros[itemName].url}}"></image>
 			</view>
 		</block>
@@ -48,7 +48,7 @@
   	<view class="table-like-column">
 	    <view class="table-like-row">
 	    	<block wx:for="{{legion1}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
-  				<view class="table-like-cell" style="border-color: green;">
+  				<view class="table-like-cell legion1-style" style="border-color: green;">
   					<image wx:if="{{itemName}}" class="icon" src="{{heros[itemName].url}}"></image>
   				</view>
   			</block>

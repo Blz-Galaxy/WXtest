@@ -11,8 +11,8 @@
 .dota2logo{
 	width:  180rpx;
 	height: 84rpx;
-	align-self: center;
-	box-shadow: 0 0 20rpx rgba(0,0,0,0.8);
+	align-self: flex-end;
+	box-shadow: inset 0 0 -20rpx red;
 
 }
 .vslogo{
@@ -67,7 +67,12 @@
 	border-color: transparent;
 	font-size: 24rpx;
 	overflow: hidden;
-
+}
+.legion2-style{
+  	border-image: linear-gradient(to right, #C02425, #F0CB35) 10 10%; 	
+}
+.legion1-style{
+	border-image: linear-gradient(to right, #56ab2f, #a8e063) 10 10%; 
 }
 .hero-avatar{
 	-webkit-transform: skew(15deg);
