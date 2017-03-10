@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50090
 File Encoding         : 65001
 
-Date: 2017-03-07 23:27:32
+Date: 2017-03-11 01:35:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25366,10 +25366,8 @@ INSERT INTO `assist_info` VALUES ('winter_wyvern', '小小', '2.63', '42', '2924
 DROP TABLE IF EXISTS `hero_info`;
 CREATE TABLE `hero_info` (
   `ID` varchar(5) NOT NULL,
-  `Ename
-Ename` varchar(50) default NULL,
-  `Cname
-Cname` varchar(100) default NULL,
+  `Ename` varchar(50) default NULL,
+  `Cname` varchar(100) default NULL,
   PRIMARY KEY  (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
