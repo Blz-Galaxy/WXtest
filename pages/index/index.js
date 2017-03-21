@@ -463,13 +463,23 @@ Page({
     data: {
         userInfo: {},
         heropicker: "OFF",
-        legion1: [undefined, undefined, undefined, undefined, undefined],
-        legion2: [undefined, undefined, undefined, undefined, undefined],
+        legion1: ['viper', 'sven', 'puck', 'tiny', undefined],
+        legion2: ['axe', 'treant', 'meepo', undefined, undefined],
         legionOnHandle: 1,
         legion1_member: 0,
         legion2_member: 0,
         heros: heroes,
-        teamRelation: teamrelate,
+        relationMat: [
+                [undefined, undefined, undefined, undefined, undefined],
+                [undefined, undefined, undefined, undefined, undefined],
+                [undefined, undefined, undefined, undefined, undefined],
+                [undefined, undefined, undefined, undefined, undefined],
+                [undefined, undefined, undefined, undefined, undefined]
+            ],
+        legiongrade:   [
+                [undefined, undefined, undefined, undefined, undefined],
+                [undefined, undefined, undefined, undefined, undefined]
+            ],
         recommandlist: teamagainstorsupport
     },
 
@@ -592,9 +602,24 @@ Page({
                     'content-type': 'application/json'
                 },
                 success: function(res) {
-                    for(var data in res.data){
-                        
-                    }
+                    console.log(res.data);
+                },
+                fail: function(err){
+                    console.log(err);
+                }
+            }); 
+            //Teammate=viper,sven,puck,tiny&Enemy=axe,treant,meepo
+             wx.request({
+                url: "https://1e6u766990.iok.la:41336/data/grid",
+                data: {
+                    Teammate: legion.join(","),
+                    Enemy: app.truncateBlank(legion_enemy)
+                },
+                header: {
+                    'content-type': 'application/json'
+                },
+                success: function(res) {
+                    console.log(res.data);
                 },
                 fail: function(err){
                     console.log(err);
@@ -609,7 +634,8 @@ Page({
 
     onLoad: function() {
         console.log('onLoad')
-        var that = this
+        var that = this,
+            mat, grade;
             //调用应用实例的方法获取全局数据
         app.getUserInfo(function(userInfo) {
             //更新数据
@@ -617,6 +643,87 @@ Page({
                 userInfo: userInfo
             })
         });
+        [mat, grade] = this.calculateTeamMatrix(this.data.legion1, this.data.legion2, teamrelate);
+        console.log(mat);
+        this.setData({
+            relationMat: mat,
+            legiongrade: grade
+        });
+    },
+
+    calculateTeamMatrix: function(alliance, enemy, relation){
+        if(!relation)
+            return [
+            [
+                [undefined, undefined, undefined, undefined, undefined],
+                [undefined, undefined, undefined, undefined, undefined],
+                [undefined, undefined, undefined, undefined, undefined],
+                [undefined, undefined, undefined, undefined, undefined],
+                [undefined, undefined, undefined, undefined, undefined],
+            ],
+            [
+                [undefined, undefined, undefined, undefined, undefined],
+                [undefined, undefined, undefined, undefined, undefined],
+            ]
+            ]
+        let getRelationship = function(a, b){
+            for(let i=0, len = relation.length; i < len;i++){
+                if(relation[i].Teammate === a && relation[i].Enemy === b){
+                    return relation[i].TeamWin;
+                }
+            }
+        }
+        let grid = [];
+        let legionPoint =  [
+                [undefined, undefined, undefined, undefined, undefined],
+                [undefined, undefined, undefined, undefined, undefined],
+            ]
+        for(let i = 0;i < 5;i++){
+            grid[i] = [undefined, undefined, undefined, undefined, undefined];
+            for(let j = 0;j < 5;j++){
+                if(alliance[j] && enemy[i]){
+                    let allia = alliance[j]
+                    let ene = enemy[i]
+                    let res = getRelationship(allia, ene);
+                    if(res === 0){
+                        grid[i][j] = {
+                            hero: ene,
+                            team: 2
+                        }
+                    }
+                       
+                    if(res === 1){
+                        grid[i][j] = {
+                            hero: allia,
+                            team: 1
+                        }
+                    }
+
+                }
+            }
+        }  
+
+
+        return [grid, legionPoint];
 
     }
-})
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

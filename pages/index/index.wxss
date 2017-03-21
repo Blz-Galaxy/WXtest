@@ -210,3 +210,14 @@
 .cross-container{
 	margin: 0 -20rpx;
 }
+.default-border{
+	border-color: rgba(0,0,0,0.3);
+}
+.legion1_win{
+	border: 1rpx solid green;
+	border-image: linear-gradient(to right, #56ab2f, #a8e063) 10 10%; 
+}
+.legion2_win{
+	border: 1rpx solid red;
+	border-image: linear-gradient(to right, #C02425, #F0CB35) 10 10%; 	
+}
