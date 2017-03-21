@@ -80,7 +80,7 @@
     	</view>
     	<block wx:for="{{legiongrade[1]}}" wx:for-item="grade" >
     	 	<view class="table-like-cell legion2-style" style="border-color: red;">
-	    		<text wx:if="{{grade}}">{{grade}}</text>
+	    		<text wx:if="{{grade !== undefined || grade !== null}}">{{grade}}</text>
 	    	</view>
 		</block>
 	</view>

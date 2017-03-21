@@ -703,6 +703,22 @@ Page({
             }
         }  
 
+        for(let i = 0;i < 5;i++){
+            legionPoint[1][i] = 0;
+            legionPoint[0][i] = 0;
+            for(let j = 0;j < 5;j++){
+                if(grid[i][j]){
+                    if(grid[i][j].team == 2) legionPoint[1][i] ++;
+                    if(grid[i][j].team == 1) legionPoint[1][i] --;
+                }
+                if(grid[j][i]){
+                    if(grid[j][i].team == 2) legionPoint[0][i] --;
+                    if(grid[j][i].team == 1) legionPoint[0][i] ++;
+                }
+            }
+            
+        }
+
 
         return [grid, legionPoint];
 
