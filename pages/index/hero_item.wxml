@@ -1,5 +1,5 @@
 <template name="hero_item">
-	<view id="{{name}}" class="hero_item" bindtap="hero_item_tap_handler">
+	<view id="{{name}}" class="hero_item" bindtap="hero_item_tap_handler2">
 		<image wx:if="{{legion}}" class="icon-list-small picked" src="{{url}}"></image>
 		<image wx:if="{{!legion}}" class="icon-list-small" src="{{url}}"></image>
 		<view wx:if="{{legion == 1}}" class="tag legion1tag">1</view>

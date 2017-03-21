@@ -1,0 +1,21 @@
+<template name="hero_recommand_item">
+<view class="table-like-row rows">
+	<view class="table-like-cell col-1">
+		<image class="icon-large" src="{{heros[hero].url}}"></image>
+		<text>{{hero}}</text>
+	</view>
+	<view class="table-like-cell col-2">
+		<block  wx:for="{{Anti}}" wx:key="re-anti-idx" wx:for-index="re-anti-idx" wx:for-item="hero">
+			<image class="icon-realsmall" src="{{heros[hero].surl}}"></image>
+		</block> 
+	</view>
+	<view class="table-like-cell col-2">
+		<block  wx:for="{{Assist}}" wx:key="re-ass-idx" wx:for-index="re-ass-idx" wx:for-item="hero">
+			<image class="icon-realsmall" src="{{heros[hero].surl}}"></image>
+		</block> 
+	</view>
+	<view class="table-like-cell col-1">
+		<text>{{idxValue}}</text>
+	</view>
+</view>
+</template>

@@ -1,12 +1,12 @@
 /**app.wxss**/
 page{
 	height:100%;
+	font: 12px/1.5 Arial, 'Droid Sans', 'Hiragino Sans GB', 'Microsoft YaHei';
+	background-color: #212121;
+    color: rgb(235, 231, 232);
 }
 .container {
-  height: 100%;
   padding: 20rpx 20rpx;
   box-sizing: border-box;
-  background-color: #212121;
-  color: rgb(235, 231, 232);
   text-align:center;
 } 

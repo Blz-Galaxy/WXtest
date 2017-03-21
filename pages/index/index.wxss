@@ -37,6 +37,7 @@
 	justify-content: center;
 	margin: 10rpx 0;
 }
+
 .table-like-view + .table-like-view{
 	margin-top: 30rpx;
 }
@@ -45,10 +46,11 @@
 	flex-direction: column;
 }
 .table-like-row{
+	width: 100%;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: space-between;
+	justify-content:center;
 }
 .table-like-cell{
 	box-sizing: border-box;
@@ -104,30 +106,26 @@
 .hero-avatar-inverse + .hero-avatar-inverse{
 	margin-left: 10rpx;
 }
-.rows+.rows{
-	margin-top: 10rpx;
+.rows{
+	padding: 15rpx 0;
 }
-.rows > .col1,
-.rows > .col2,
-.rows > .col3,
-.rows > .col4{
-	height: 80rpx;
+.even{
+	background-color: #141516;
 }
+
 .icon-large{
 	width:  100rpx;
 	height: 56rpx;
 }
-.col1{
-	width: 108rpx;
+.icon-realsmall{
+	width: 45rpx;
+	height: 45rpx;
 }
-.col2{
-	width: 240rpx
+.col-1{
+	width: 16.6666666666666666666%;
 }
-.col3{
-	width: 240rpx
-}
-.col4{
-	width: 108rpx
+.col-2{
+	width: 33.3333333333333333333%;
 }
 .table-like-cell.small-cell{
 	padding: 8rpx;
@@ -205,4 +203,10 @@
 .property-icon{
 	width: 48rpx;
 	height: 48rpx;
+}
+.theader{
+    background: rgb(12, 12, 12);
+}
+.cross-container{
+	margin: 0 -20rpx;
 }

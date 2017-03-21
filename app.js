@@ -34,5 +34,22 @@ App({
             }
         }
         return target;
+    },
+    fillBlank: function(arr, length){
+        if(length>arr.length){
+            let gap = length - arr.length;
+            for(let i = 1; i<= gap; i++){
+                arr.push(undefined);
+            }
+        }
+    },
+     truncateBlank: function(arr){
+        var str = "";
+        for(var i =0 ;i<arr.length;i++){
+            if(arr[i])
+                str += arr[i] + ',';
+        }
+        str = str.slice(0, str.length-2);
+        return str;
     }
 })
