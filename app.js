@@ -43,13 +43,13 @@ App({
             }
         }
     },
-     truncateBlank: function(arr){
+    truncateBlank: function(arr){
         var str = "";
         for(var i =0 ;i<arr.length;i++){
             if(arr[i])
                 str += arr[i] + ',';
         }
-        str = str.slice(0, str.length-2);
+        str = str.slice(0, str.length-1);
         return str;
     }
 })

@@ -221,3 +221,26 @@
 	border: 1rpx solid red;
 	border-image: linear-gradient(to right, #C02425, #F0CB35) 10 10%; 	
 }
+.infomation-layer{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	animation-name:shining;
+	animation-duration: 2s;
+	animation-timing-function: ease-out;
+	animation-direction: alternate;
+	animation-iteration-count: infinite;
+	background-color: rgba(0,0,0,0.8);
+	color: #fff;
+	font-size: 84rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@-webkit-keyframes shining{
+	0%{  background-color: rgba(0,0,0,0.4);}
+	100%{  background-color: rgba(0,0,0,0.8);}
+}

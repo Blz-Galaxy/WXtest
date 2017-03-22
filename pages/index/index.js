@@ -453,9 +453,9 @@ var heroes = { axe:
    { name: 'winter_wyvern',
      url: 'http://cdn.dota2.com/apps/dota2/images/heroes/winter_wyvern_hphover.png',
      surl: 'http://www.dota2.com.cn/images/heroes/winter_wyvern_icon.png' } }
-const teamrelate = [{"Teammate":"viper","Enemy":"axe","TeamWin":1},{"Teammate":"viper","Enemy":"treant","TeamWin":1},{"Teammate":"viper","Enemy":"meepo","TeamWin":0},{"Teammate":"sven","Enemy":"axe","TeamWin":0},{"Teammate":"sven","Enemy":"treant","TeamWin":0},{"Teammate":"sven","Enemy":"meepo","TeamWin":1},{"Teammate":"puck","Enemy":"axe","TeamWin":0},{"Teammate":"puck","Enemy":"treant","TeamWin":0},{"Teammate":"puck","Enemy":"meepo","TeamWin":1},{"Teammate":"tiny","Enemy":"axe","TeamWin":1},{"Teammate":"tiny","Enemy":"treant","TeamWin":0},{"Teammate":"tiny","Enemy":"meepo","TeamWin":1}];
+//const teamrelate = [{"Teammate":"viper","Enemy":"axe","TeamWin":1},{"Teammate":"viper","Enemy":"treant","TeamWin":1},{"Teammate":"viper","Enemy":"meepo","TeamWin":0},{"Teammate":"sven","Enemy":"axe","TeamWin":0},{"Teammate":"sven","Enemy":"treant","TeamWin":0},{"Teammate":"sven","Enemy":"meepo","TeamWin":1},{"Teammate":"puck","Enemy":"axe","TeamWin":0},{"Teammate":"puck","Enemy":"treant","TeamWin":0},{"Teammate":"puck","Enemy":"meepo","TeamWin":1},{"Teammate":"tiny","Enemy":"axe","TeamWin":1},{"Teammate":"tiny","Enemy":"treant","TeamWin":0},{"Teammate":"tiny","Enemy":"meepo","TeamWin":1}];
 
-const teamagainstorsupport = [{"hero":"shredder","idxValue":22.48,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"elder_titan","idxValue":18.94,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"leshrac","idxValue":18.51,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"warlock","idxValue":16.51,"Assist":["viper","sven","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"winter_wyvern","idxValue":15.18,"Assist":["viper","sven","tiny"],"Anti":["treant","meepo"]},{"hero":"jakiro","idxValue":14.94,"Assist":["viper","sven"],"Anti":["axe","treant","meepo"]},{"hero":"death_prophet","idxValue":14.06,"Assist":["viper","sven","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"batrider","idxValue":13.91,"Assist":["viper","sven"],"Anti":["axe","treant","meepo"]},{"hero":"ursa","idxValue":13.54,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"phoenix","idxValue":12.88,"Assist":["viper","sven","tiny"],"Anti":["axe","treant"]}];
+//const teamagainstorsupport = [{"hero":"shredder","idxValue":22.48,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"elder_titan","idxValue":18.94,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"leshrac","idxValue":18.51,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"warlock","idxValue":16.51,"Assist":["viper","sven","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"winter_wyvern","idxValue":15.18,"Assist":["viper","sven","tiny"],"Anti":["treant","meepo"]},{"hero":"jakiro","idxValue":14.94,"Assist":["viper","sven"],"Anti":["axe","treant","meepo"]},{"hero":"death_prophet","idxValue":14.06,"Assist":["viper","sven","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"batrider","idxValue":13.91,"Assist":["viper","sven"],"Anti":["axe","treant","meepo"]},{"hero":"ursa","idxValue":13.54,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"phoenix","idxValue":12.88,"Assist":["viper","sven","tiny"],"Anti":["axe","treant"]}];
 
 var app = getApp()
 
@@ -463,8 +463,8 @@ Page({
     data: {
         userInfo: {},
         heropicker: "OFF",
-        legion1: ['viper', 'sven', 'puck', 'tiny', undefined],
-        legion2: ['axe', 'treant', 'meepo', undefined, undefined],
+        legion1: [undefined, undefined, undefined, undefined, undefined],
+        legion2: [undefined, undefined, undefined, undefined, undefined],
         legionOnHandle: 1,
         legion1_member: 0,
         legion2_member: 0,
@@ -480,7 +480,12 @@ Page({
                 [undefined, undefined, undefined, undefined, undefined],
                 [undefined, undefined, undefined, undefined, undefined]
             ],
-        recommandlist: teamagainstorsupport
+        recommandlist: [],
+        informationLayer: {
+            state: "OFF",
+            msg: "Loading...",
+            anim: "shining"
+        }
     },
 
     //事件处理函数
@@ -573,13 +578,54 @@ Page({
         }
 
     },
+    hero_recommand_handler: function(event){
+      console.log("recommandlist clink!!!!")
+        let hero = event.currentTarget.dataset.recommand,
+            heros = this.data.heros,
+            model_old = heros[hero],
+            legion_old = this.data.legion1,
+            legion_new = [],
+            legion_enemy = this.data.legion2,
+            that = this,
+            obj = {},
+            heros_new = app.cloneObject(heros),
+            model_new;
+
+        if(legion_old.some((elem)=>{return elem === hero;}) || legion_enemy.some((elem)=>{return elem === hero;})){
+            return ;
+        }
+
+        for (var i = 0; i < 5; i++) {
+            if(legion_old[i]){
+                legion_new[i] = legion_old[i];
+            }else{
+                legion_new[i] = hero;
+                break;
+            }
+        }
+
+        this.requestData(legion_new, legion_enemy);
+
+
+        app.fillBlank(legion_new, 5);
+
+        model_old.legion = 1;
+        model_new = app.cloneObject(model_old)
+        heros_new[hero] = model_new;
+        obj.heros = heros_new;
+        obj.legion1 = legion_new;
+
+        this.setData(obj);
+    },
     closepanel: function(event) {
         if (event.target.id == "HeroPanel") {
             let heros = this.data.heros,
                 legion = [],
                 legion_num = this.data.legionOnHandle,
                 legion_old = this.data[`legion${legion_num}`],
-                legion_enemy = this.data[`legion${legion_num == 1?2:1}`];
+                legion_enemy = this.data[`legion${legion_num == 1?2:1}`],
+                that = this,
+                change = false;
 
             for(let idx in heros){
                 let hero = heros[idx]; 
@@ -587,49 +633,166 @@ Page({
                     legion.push(hero.name);
                 }
             }
+
+            for(let len = legion.length, i=0; i< len; i++){
+                if(!legion_old.some((elem) =>{return elem == legion[i]})){
+                    change = true;
+                }
+            }
             
             let obj = {
                 "heropicker": "OFF"
             };
 
-            wx.request({
-                url: "https://1e6u766990.iok.la:41336/data/recommend",
-                data: {
-                    Teammate: legion.join(","),
-                    Enemy: app.truncateBlank(legion_enemy)
-                },
-                header: {
-                    'content-type': 'application/json'
-                },
-                success: function(res) {
-                    console.log(res.data);
-                },
-                fail: function(err){
-                    console.log(err);
-                }
-            }); 
-            //Teammate=viper,sven,puck,tiny&Enemy=axe,treant,meepo
-             wx.request({
-                url: "https://1e6u766990.iok.la:41336/data/grid",
-                data: {
-                    Teammate: legion.join(","),
-                    Enemy: app.truncateBlank(legion_enemy)
-                },
-                header: {
-                    'content-type': 'application/json'
-                },
-                success: function(res) {
-                    console.log(res.data);
-                },
-                fail: function(err){
-                    console.log(err);
-                }
-            }); 
+            if(!change){
+                this.setData(obj);
+                return;
+            }
+
+            if(legion_num == 1){
+                this.requestData(legion, legion_enemy);
+            }else{
+                this.requestData(legion_enemy, legion);
+            }
+            
+            //Teammate=viper,sven,puck,tiny&Enemy=axe,treant,meepo 
 
             app.fillBlank(legion, 5);     
             obj[`legion${legion_num}`] = legion;
             this.setData(obj);
         }
+    },
+    requestData: function(legion, legion_enemy){
+        this.setData({
+            informationLayer: {
+                state: "ON",
+                msg: "Loading...",
+                anim: "shining"
+              }
+        });
+        var p1 = false, 
+            p2 = false,
+            p1f = false,
+            p2f = false,
+            that = this;
+        var resolve = function(){
+          console.log(p1, p2);
+            if(p1 && p2){
+                that.setData({
+                    informationLayer: {
+                        state: "OFF",
+                        msg: "Loading...",
+                        anim: "shining"
+                      }
+                });
+            }
+        }
+        var reject = function(){
+            if(p1f || p2f){
+                 that.setData({
+                    informationLayer: {
+                        state: "ON",
+                        msg: "服务器让猴子偷走拉！",
+                        anim: "none"
+                      }
+                });
+            }
+        }
+       this.requestForRecommend(legion, legion_enemy, ()=>{
+          p1 = true;
+          console.log(`p1:${p1}`);
+          resolve();
+       }, ()=>{
+          p1f = true;
+          reject();
+       });
+       this.requestForGrid(legion, legion_enemy, ()=>{
+          p2 = true;
+          console.log(`p2:${p2}`);
+          resolve();
+       }, ()=>{
+          p2f = true;
+          reject();
+       });
+
+        /*var p1 = new Promise((resolve, reject) => {
+            this.requestForRecommend(legion, legion_enemy, resolve, reject);
+        });
+        var p2 = new Promise((resolve, reject) => {
+            this.requestForGrid(legion, legion_enemy, resolve, reject);
+        });
+
+        Promise.all([p1, p2]).then(()=>{
+            this.setData({
+                informationLayer: {
+                    state: "OFF",
+                    msg: "Loading...",
+                    anim: "shining"
+                  }
+            });
+        }).catch(()=>{
+            this.setData({
+                informationLayer: {
+                    state: "OFF",
+                    msg: "Loading...",
+                    anim: "none"
+                  }
+            });
+        })*/
+    },
+
+    requestForRecommend: function(legion, legion_enemy, resolve, reject){
+        let that = this;
+        wx.request({
+            url: "https://1e6u766990.iok.la:25972/data/recommend",
+            data: {
+                Teammate: app.truncateBlank(legion),
+                Enemy: app.truncateBlank(legion_enemy)
+            },
+            header: {
+                'content-type': 'application/json'
+            },
+            success: function(res) {
+                console.log(`recommand:${res.data}`);
+                that.setData({
+                    recommandlist: res.data
+                });
+                resolve();
+            },
+            fail: function(err){
+                console.log(err);
+                reject();
+            }
+        }); 
+    },
+
+    requestForGrid: function(legion, legion_enemy, resolve, reject){
+        let that = this;
+        wx.request({
+            url: "https://1e6u766990.iok.la:25972/data/grid",
+            data: {
+                Teammate: app.truncateBlank(legion),
+                Enemy: app.truncateBlank(legion_enemy)
+            },
+            header: {
+                'content-type': 'application/json'
+            },
+            success: function(res) {
+                console.log(`grid:${res.data}`);
+                let mat, grade;
+                [mat, grade] = that.calculateTeamMatrix(legion, legion_enemy, res.data);
+                console.log(mat, grade);
+                that.setData({
+                    relationMat: mat,
+                    legiongrade: grade
+                });
+                resolve();
+            },
+            fail: function(err){
+                console.log(err);
+                reject();
+            }
+        }); 
     },
 
     onLoad: function() {
@@ -643,14 +806,13 @@ Page({
                 userInfo: userInfo
             })
         });
-        [mat, grade] = this.calculateTeamMatrix(this.data.legion1, this.data.legion2, teamrelate);
+        /*[mat, grade] = this.calculateTeamMatrix(this.data.legion1, this.data.legion2, teamrelate);
         console.log(mat);
         this.setData({
             relationMat: mat,
             legiongrade: grade
-        });
+        });*/
     },
-
     calculateTeamMatrix: function(alliance, enemy, relation){
         if(!relation)
             return [
@@ -693,10 +855,15 @@ Page({
                     }
                        
                     if(res === 1){
+                      
+                    }
+
+                    if(res === 2){
                         grid[i][j] = {
                             hero: allia,
                             team: 1
                         }
+
                     }
 
                 }

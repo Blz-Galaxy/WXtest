@@ -104,10 +104,12 @@
 		</view>
   	</view>
   	<block wx:if="{{recommandlist.length === 0}}">
-  		<text>快选择英雄吧！</text>
+  		<view class="table-like-row" style="font-size: 32rpx; margin-top: 20rpx">
+  			<text>快选择英雄吧！</text>
+  		</view>
   	</block>
   	<block wx:if="{{recommandlist.length > 0}}" wx:for="{{recommandlist}}" wx:key="idx" wx:for-index="idx" wx:for-item="recommand">
-  		<view class="{{idx % 2 == 0?'table-like-row rows':'table-like-row rows even'}}">
+  		<view class="{{idx % 2 == 0?'table-like-row rows':'table-like-row rows even'}}" bindtap="hero_recommand_handler" data-recommand="{{recommand.hero}}">
 	  		<view class="table-like-cell col-1">
 				<image class="icon-large" src="{{heros[recommand.hero].url}}"></image>
 				<text>{{recommand.hero}}</text>
@@ -156,4 +158,8 @@
 
   	</block>
   </scroll-view>
+
+  <view class="infomation-layer" wx:if="{{informationLayer.state==='ON'}}" style="animation-name:{{informationLayer.anim}}">
+  		<text>{{informationLayer.msg}}</text>
+  </view>
 </view>
