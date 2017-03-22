@@ -589,9 +589,10 @@ Page({
             that = this,
             obj = {},
             heros_new = app.cloneObject(heros),
-            model_new;
+            model_new,
+            legion_member = this.data.legion1_member;
 
-        if(legion_old.length >= 5 || legion_old.some((elem)=>{return elem === hero;}) || legion_enemy.some((elem)=>{return elem === hero;})){
+        if(legion_member >= 5 || legion_old.some((elem)=>{return elem === hero;}) || legion_enemy.some((elem)=>{return elem === hero;})){
             return ;
         }
 
@@ -614,7 +615,7 @@ Page({
         heros_new[hero] = model_new;
         obj.heros = heros_new;
         obj.legion1 = legion_new;
-
+        obj.legion1_member = legion_member + 1;
         this.setData(obj);
     },
     closepanel: function(event) {
