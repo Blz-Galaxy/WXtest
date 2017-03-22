@@ -640,6 +640,7 @@ Page({
                 change = true;
             }else{
                 for(let len = legion.length, i=0; i< len; i++){
+                    let hero = legion[i]; 
                     if(!legion_old.some((elem) =>{return elem == hero})){
                         change = true;
                         break;
