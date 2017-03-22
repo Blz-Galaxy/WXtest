@@ -633,11 +633,11 @@ Page({
                     legion.push(hero.name);
                 }
             }
+            console.log(`legion_old${legion_old}`);
+            console.log(`legion${legion}`)
 
-            for(let len = legion.length, i=0; i< len; i++){
-                if(!legion_old.some((elem) =>{return elem == legion[i]})){
-                    change = true;
-                }
+            if(legion.length !== legion_old.length){
+                change = true;
             }
             
             let obj = {
