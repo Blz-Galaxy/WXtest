@@ -638,7 +638,16 @@ Page({
 
             if(legion.length !== legion_old.length){
                 change = true;
+            }else{
+                for(let len = legion.length, i=0; i< len; i++){
+                    if(!legion_old.some((elem) =>{return elem == hero})){
+                        change = true;
+                        break;
+                    }
+                }
             }
+
+           
             
             let obj = {
                 "heropicker": "OFF"
