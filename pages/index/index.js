@@ -591,7 +591,7 @@ Page({
             heros_new = app.cloneObject(heros),
             model_new;
 
-        if(legion_old.some((elem)=>{return elem === hero;}) || legion_enemy.some((elem)=>{return elem === hero;})){
+        if(legion_old.length >= 5 || legion_old.some((elem)=>{return elem === hero;}) || legion_enemy.some((elem)=>{return elem === hero;})){
             return ;
         }
 
