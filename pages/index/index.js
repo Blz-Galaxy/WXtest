@@ -453,6 +453,7 @@ var heroes = { axe:
    { name: 'winter_wyvern',
      url: 'http://cdn.dota2.com/apps/dota2/images/heroes/winter_wyvern_hphover.png',
      surl: 'http://www.dota2.com.cn/images/heroes/winter_wyvern_icon.png' } }
+
 //const teamrelate = [{"Teammate":"viper","Enemy":"axe","TeamWin":1},{"Teammate":"viper","Enemy":"treant","TeamWin":1},{"Teammate":"viper","Enemy":"meepo","TeamWin":0},{"Teammate":"sven","Enemy":"axe","TeamWin":0},{"Teammate":"sven","Enemy":"treant","TeamWin":0},{"Teammate":"sven","Enemy":"meepo","TeamWin":1},{"Teammate":"puck","Enemy":"axe","TeamWin":0},{"Teammate":"puck","Enemy":"treant","TeamWin":0},{"Teammate":"puck","Enemy":"meepo","TeamWin":1},{"Teammate":"tiny","Enemy":"axe","TeamWin":1},{"Teammate":"tiny","Enemy":"treant","TeamWin":0},{"Teammate":"tiny","Enemy":"meepo","TeamWin":1}];
 
 //const teamagainstorsupport = [{"hero":"shredder","idxValue":22.48,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"elder_titan","idxValue":18.94,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"leshrac","idxValue":18.51,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"warlock","idxValue":16.51,"Assist":["viper","sven","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"winter_wyvern","idxValue":15.18,"Assist":["viper","sven","tiny"],"Anti":["treant","meepo"]},{"hero":"jakiro","idxValue":14.94,"Assist":["viper","sven"],"Anti":["axe","treant","meepo"]},{"hero":"death_prophet","idxValue":14.06,"Assist":["viper","sven","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"batrider","idxValue":13.91,"Assist":["viper","sven"],"Anti":["axe","treant","meepo"]},{"hero":"ursa","idxValue":13.54,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"phoenix","idxValue":12.88,"Assist":["viper","sven","tiny"],"Anti":["axe","treant"]}];
@@ -755,7 +756,7 @@ Page({
     requestForRecommend: function(legion, legion_enemy, resolve, reject){
         let that = this;
         wx.request({
-            url: "https://bd723074.ngrok.io/data/recommend",
+            url: "https://ddsupport.xyz/data/recommend",
             data: {
                 Teammate: app.truncateBlank(legion),
                 Enemy: app.truncateBlank(legion_enemy)
@@ -780,7 +781,7 @@ Page({
     requestForGrid: function(legion, legion_enemy, resolve, reject){
         let that = this;
         wx.request({
-            url: "https://bd723074.ngrok.io/data/grid",
+            url: "https://ddsupport.xyz/data/grid",
             data: {
                 Teammate: app.truncateBlank(legion),
                 Enemy: app.truncateBlank(legion_enemy)
