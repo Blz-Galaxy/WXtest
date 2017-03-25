@@ -755,7 +755,7 @@ Page({
     requestForRecommend: function(legion, legion_enemy, resolve, reject){
         let that = this;
         wx.request({
-            url: "https://1e6u766990.iok.la:25972/data/recommend",
+            url: "https://bd723074.ngrok.io/data/recommend",
             data: {
                 Teammate: app.truncateBlank(legion),
                 Enemy: app.truncateBlank(legion_enemy)
@@ -780,7 +780,7 @@ Page({
     requestForGrid: function(legion, legion_enemy, resolve, reject){
         let that = this;
         wx.request({
-            url: "https://1e6u766990.iok.la:25972/data/grid",
+            url: "https://bd723074.ngrok.io/data/grid",
             data: {
                 Teammate: app.truncateBlank(legion),
                 Enemy: app.truncateBlank(legion_enemy)
