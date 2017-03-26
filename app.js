@@ -43,6 +43,14 @@ App({
             }
         }
     },
+    getRealLength: function(arr){
+        let sum = 0;
+        for(let i =0; i<arr.length; i++){
+            if(arr[i])
+                sum++;
+        }
+        return sum;
+    },
     truncateBlank: function(arr){
         var str = "";
         for(var i =0 ;i<arr.length;i++){

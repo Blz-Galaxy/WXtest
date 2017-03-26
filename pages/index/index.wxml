@@ -13,7 +13,7 @@
   		<view class="table-like-row">
   			<block wx:for="{{legion1}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
   				<view class="table-like-cell hero-avatar legion1-style" style="border-color: green;">
-  					<image wx:if="{{itemName}}" class="icon" src="../../image/hero_image/{{itemName}}.jpg"></image>
+  					<image wx:if="{{itemName}}" class="icon" src="{{heros[itemName].url}}"></image>
   				</view>
   			</block>
 	    </view>
@@ -25,7 +25,7 @@
   		<view class="table-like-row">
   			<block wx:for="{{legion2}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
   				<view class="table-like-cell hero-avatar-inverse legion2-style" style="border-color: red;">
-  					<image  wx:if="{{itemName}}" class="icon" src="../../image/hero_image/{{itemName}}.jpg"></image>
+  					<image  wx:if="{{itemName}}" class="icon" src="{{heros[itemName].url}}"></image>
   				</view>
   			</block>
 	    </view>
@@ -40,7 +40,7 @@
 
 		<block wx:for="{{legion2}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
 			<view class="table-like-cell legion2-style" style="border-color: red;">
-				<image wx:if="{{itemName}}" class="icon" src="../../image/hero_image/{{itemName}}.jpg"></image>
+				<image wx:if="{{itemName}}" class="icon" src="{{heros[itemName].url}}"></image>
 			</view>
 		</block>
 
@@ -49,7 +49,7 @@
 	    <view class="table-like-row">
 	    	<block wx:for="{{legion1}}" wx:key="*this" wx:for-index="idx" wx:for-item="itemName">
   				<view class="table-like-cell legion1-style" style="border-color: green;">
-  					<image wx:if="{{itemName}}" class="icon" src="../../image/hero_image/{{itemName}}.jpg"></image>
+  					<image wx:if="{{itemName}}" class="icon" src="{{heros[itemName].url}}"></image>
   				</view>
   			</block>
 	    </view>
@@ -59,7 +59,7 @@
     				<view class="table-like-cell small-cell default-border">
     					<image wx:if="{{cell && cell.team == 1}}" class="icon legion1_win" src="{{heros[cell.hero].url}}"></image>
     					<image wx:if="{{cell && cell.team == 2}}" class="icon legion2_win" src="{{heros[cell.hero].url}}"></image>
-    					<image wx:if="{{cell && cell.team == 0}}" class="icon" src="../../image/hero_image{{cell.hero}}.jpg"></image>
+    					<image wx:if="{{cell && cell.team == 0}}" class="icon" src="{{heros[cell.hero].url}}"></image>
     				</view>
     			</block>
     		</view>
@@ -111,17 +111,17 @@
   	<block wx:if="{{recommandlist.length > 0}}" wx:for="{{recommandlist}}" wx:key="idx" wx:for-index="idx" wx:for-item="recommand">
   		<view class="{{idx % 2 == 0?'table-like-row rows':'table-like-row rows even'}}" bindtap="hero_recommand_handler" data-recommand="{{recommand.hero}}">
 	  		<view class="table-like-cell col-1">
-				<image class="icon-large" src="../../image/hero_image/{{recommand.hero}}.jpg"></image>
+				<image class="icon-large" src="{{heros[recommand.hero].url}}"></image>
 				<text>{{recommand.hero}}</text>
 			</view>
 			<view class="table-like-cell col-2">
 				<block  wx:for="{{recommand.Anti}}" wx:key="re-anti-idx" wx:for-index="re-anti-idx" wx:for-item="hero">
-					<image class="icon-realsmall" src="../../image/hero_image/{{hero}}_icon.jpg"></image>
+					<image class="icon-realsmall" src="{{heros[hero].surl}}"></image>
 				</block> 
 			</view>
 			<view class="table-like-cell col-2">
 				<block  wx:for="{{recommand.Assist}}" wx:key="re-ass-idx" wx:for-index="re-ass-idx" wx:for-item="hero">
-					<image class="icon-realsmall" src="../../image/hero_image/{{hero}}_icon.jpg"></image>
+					<image class="icon-realsmall" src="{{heros[hero].surl}}"></image>
 				</block> 
 			</view>
 			<view class="table-like-cell col-1">
@@ -145,7 +145,7 @@
 		<view wx:if="{{idx == 'bane' }}" class="split-block">
 			<image class="property-icon" src="../../image/overviewicon_int.png"></image>
 		</view>
-		<template is="hero_item" data="{{...item}}"></template>
+		<template is="hero_item" data="{{heros, ...item}}"></template>
 			<!--<block wx:if="{{itemName.legion1}}">			
 				<image id="{{idx}}" class="icon-list-small picked" src="{{itemName.url}}"></image>
 				<view id="{{idx}}" class="tag legion1tag">1</view>

@@ -56,7 +56,7 @@ var heroes = { axe:
   life_stealer:
    { name: 'life_stealer',
      url: 'http://cdn.dota2.com/apps/dota2/images/heroes/life_stealer_hphover.png',
-     surl: 'http://www.dota2.com.cn/images/heroes/life_stealer_icon.png' },
+     surl: '../../image/hero_image/life_stealer_icon.jpg' },
   omniknight:
    { name: 'omniknight',
      url: 'http://cdn.dota2.com/apps/dota2/images/heroes/omniknight_hphover.png',
@@ -72,7 +72,7 @@ var heroes = { axe:
   doom_bringer:
    { name: 'doom_bringer',
      url: 'http://cdn.dota2.com/apps/dota2/images/heroes/doom_bringer_hphover.png',
-     surl: 'http://www.dota2.com.cn/images/heroes/doom_bringer_icon.png' },
+     surl: '../../image/hero_image/doom_bringer_icon.jpg' },
   spirit_breaker:
    { name: 'spirit_breaker',
      url: 'http://cdn.dota2.com/apps/dota2/images/heroes/spirit_breaker_hphover.png',
@@ -635,10 +635,10 @@ Page({
                     legion.push(hero.name);
                 }
             }
-            console.log(`legion_old${legion_old}`);
-            console.log(`legion${legion}`)
 
-            if(legion.length !== legion_old.length){
+            let real_l = app.getRealLength(legion_old);
+            console.log(`real_l${real_l}`);
+            if(legion.length !== real_l){
                 change = true;
             }else{
                 for(let len = legion.length, i=0; i< len; i++){
@@ -660,7 +660,10 @@ Page({
                 this.setData(obj);
                 return;
             }
+            //let enemy_list = app.truncateBlank(legion_enemy);
 
+            console.log(`legion${legion}`)
+            console.log(`enemy_list${legion_enemy}`);
             if(legion_num == 1){
                 this.requestData(legion, legion_enemy);
             }else{
@@ -690,10 +693,11 @@ Page({
         var resolve = function(){
           console.log(p1, p2);
             if(p1 && p2){
+                console.log("加载完毕")
                 that.setData({
                     informationLayer: {
                         state: "OFF",
-                        msg: "Loading...",
+                        msg: "Complete!",
                         anim: "shining"
                       }
                 });
@@ -726,31 +730,6 @@ Page({
           p2f = true;
           reject();
        });
-
-        /*var p1 = new Promise((resolve, reject) => {
-            this.requestForRecommend(legion, legion_enemy, resolve, reject);
-        });
-        var p2 = new Promise((resolve, reject) => {
-            this.requestForGrid(legion, legion_enemy, resolve, reject);
-        });
-
-        Promise.all([p1, p2]).then(()=>{
-            this.setData({
-                informationLayer: {
-                    state: "OFF",
-                    msg: "Loading...",
-                    anim: "shining"
-                  }
-            });
-        }).catch(()=>{
-            this.setData({
-                informationLayer: {
-                    state: "OFF",
-                    msg: "Loading...",
-                    anim: "none"
-                  }
-            });
-        })*/
     },
 
     requestForRecommend: function(legion, legion_enemy, resolve, reject){
