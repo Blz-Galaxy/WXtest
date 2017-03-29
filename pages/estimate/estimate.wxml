@@ -1,0 +1,14 @@
+<view class="container">
+	<text>{{estimateScore.score}}</text>
+	<text>{{estimateScore.desc}}</text>
+	<!--<button bindtap="donate"> 捐赠 </button>-->
+	<button bindtap="goback"> 返回 </button>
+
+	<view wx:if="{{donatePanel}}" class="popup">
+		<view class="modal">
+			喜欢的话就请打赏我们一下吧~
+			<button>打赏</button>
+			<button>残忍拒绝</button>
+		</view>
+	</view>
+</view>

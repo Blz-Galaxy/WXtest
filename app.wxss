@@ -1,7 +1,7 @@
 /**app.wxss**/
 page{
 	height:100%;
-	font: 12px/1.5 Arial, 'Droid Sans', 'Hiragino Sans GB', 'Microsoft YaHei';
+	font: 12px/1.5 "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 	background-color: #212121;
     color: rgb(235, 231, 232);
 }
