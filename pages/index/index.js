@@ -64,6 +64,8 @@ Page({
         let heros = cloneObject(this.data.heros);
         let legion_old =  this.data[`legion${team}`];
 
+        if( this.data[`legion${team}_member`] === 0) return;
+
         legion_old.forEach((elem) => {
             if(elem){
               let hero = cloneObject(heros[elem]);

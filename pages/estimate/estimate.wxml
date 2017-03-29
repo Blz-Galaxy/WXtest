@@ -5,10 +5,13 @@
 	<button bindtap="goback"> 返回 </button>
 
 	<view wx:if="{{donatePanel}}" class="popup">
-		<view class="modal">
-			喜欢的话就请打赏我们一下吧~
-			<button>打赏</button>
-			<button>残忍拒绝</button>
+		<view class="modal"  animation="{{modalAnimationData}}">
+			<text>喜欢的话就请打赏我们一下吧~</text>
+			<image class="guaiqiao" src="../../image/guaiqiao.jpg"></image>
+			<view class="modal-bottom halfandhalf">
+				<button class="btn btn-not" bindtap="rejectCallback">残忍拒绝</button>
+				<button class="btn btn-ok" bindtap="donateCallback">打赏</button>
+			</view>
 		</view>
 	</view>
 </view>

@@ -11,4 +11,41 @@
 }
 .popup > .modal{
 	width: 80%;
+	background-color: #191919;
+	font-size: 36rpx;
+	border-radius: 24rpx;
+	border: 1px solid #fff;
+	padding: 20rpx;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	line-height: 98rpx;
+}
+.modal > .modal-bottom{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	margin-top: 20rpx;
+}
+.btn{
+	display: inline-block;
+}
+.btn.btn-ok{
+	background-color: rgba(70,175,95,0.9);
+	color: #fff;
+}
+.btn.btn-not{
+	background-color: #fff;
+	color: #000;
+}
+.modal-bottom.halfandhalf > .btn{
+	width: 40%;
+	box-sizing: border-box;
+
+}
+.guaiqiao{
+	width: 120rpx;
+	height: 121rpx;
 }

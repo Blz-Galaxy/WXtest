@@ -5,11 +5,6 @@ module.exports = {
 			if(elem) l++;
 		});
 		return l;
-	},
-	animation: function(anim, time){
-		
-		setTimeout(function(){
-
-		})
 	}
+
 }
