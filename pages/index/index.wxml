@@ -1,10 +1,10 @@
 <!--index.wxml-->
 <import src="hero_item.wxml"/>
-<view wx:if="{{estimateScore.visible}}" class="estimatePanel {{animated?'estimateAnimated':''}}" animation="{{estimateAnimation}}" bindtap="backtoRival">
+<!--<view wx:if="{{estimateScore.visible}}" class="estimatePanel {{animated?'estimateAnimated':''}}" animation="{{estimateAnimation}}" bindtap="backtoRival">
   <text>{{estimateScore.score}}</text>
   <text>{{estimateScore.msg}}</text>
-</view>
-<view class="container {{animated?'rivalAnimated':''}}" animation="{{rivalAnimation}}">
+</view>-->
+<view class="container">
  <!-- <view  bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>

@@ -1,6 +1,7 @@
 <view class="container">
 	<text>{{estimateScore.score}}</text>
 	<text>{{estimateScore.desc}}</text>
+		
 	<!--<button bindtap="donate"> 捐赠 </button>-->
 	<button bindtap="goback"> 返回 </button>
 

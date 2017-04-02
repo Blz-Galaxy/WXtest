@@ -2,6 +2,8 @@
 //获取应用实例
 // app.js
 var heroes = require("./heros_json.js");
+var Legion = require("./legion");
+var Heros = require("./heros");
 //const teamrelate = [{"Teammate":"viper","Enemy":"axe","TeamWin":1},{"Teammate":"viper","Enemy":"treant","TeamWin":1},{"Teammate":"viper","Enemy":"meepo","TeamWin":0},{"Teammate":"sven","Enemy":"axe","TeamWin":0},{"Teammate":"sven","Enemy":"treant","TeamWin":0},{"Teammate":"sven","Enemy":"meepo","TeamWin":1},{"Teammate":"puck","Enemy":"axe","TeamWin":0},{"Teammate":"puck","Enemy":"treant","TeamWin":0},{"Teammate":"puck","Enemy":"meepo","TeamWin":1},{"Teammate":"tiny","Enemy":"axe","TeamWin":1},{"Teammate":"tiny","Enemy":"treant","TeamWin":0},{"Teammate":"tiny","Enemy":"meepo","TeamWin":1}];
 
 //const teamagainstorsupport = [{"hero":"shredder","idxValue":22.48,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"elder_titan","idxValue":18.94,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"leshrac","idxValue":18.51,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"warlock","idxValue":16.51,"Assist":["viper","sven","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"winter_wyvern","idxValue":15.18,"Assist":["viper","sven","tiny"],"Anti":["treant","meepo"]},{"hero":"jakiro","idxValue":14.94,"Assist":["viper","sven"],"Anti":["axe","treant","meepo"]},{"hero":"death_prophet","idxValue":14.06,"Assist":["viper","sven","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"batrider","idxValue":13.91,"Assist":["viper","sven"],"Anti":["axe","treant","meepo"]},{"hero":"ursa","idxValue":13.54,"Assist":["viper","sven","puck","tiny"],"Anti":["axe","treant","meepo"]},{"hero":"phoenix","idxValue":12.88,"Assist":["viper","sven","tiny"],"Anti":["axe","treant"]}];
@@ -19,10 +21,9 @@ Page({
         heropicker: "OFF",
         legion1: [undefined, undefined, undefined, undefined, undefined],
         legion2: [undefined, undefined, undefined, undefined, undefined],
-        legionOnHandle: 1,
         legion1_member: 0, 
         legion2_member: 0, 
-        heros: heroes,
+        heros: {},
         relationMat: [
                 [undefined, undefined, undefined, undefined, undefined],
                 [undefined, undefined, undefined, undefined, undefined],
@@ -43,14 +44,12 @@ Page({
         },
         estimateAnimation: {},
         animated: false,
-        rivalAnimation: {},
-        estimateScore: {
-            visible: false,
-            msg: "xxxxxxxx",
-            score: 3.45
-        }
+        rivalAnimation: {}
     },
-
+    Legion1: Legion(5),
+    Legion2: Legion(5),
+    legionOnHandle: 1,
+    Heros: Heros(),
     //事件处理函数
     bindViewTap: function() {
         wx.navigateTo({
@@ -58,7 +57,7 @@ Page({
         })
     },
     clearHero: function(event){
-        let team = event.currentTarget.dataset.team;
+        /*let team = event.currentTarget.dataset.team;
         let obj = {};
         let cloneObject = app.cloneObject;
         let heros = cloneObject(this.data.heros);
@@ -77,90 +76,76 @@ Page({
         obj[`legion${team}`] = [undefined, undefined, undefined, undefined, undefined];
         obj[`legion${team}_member`] = 0;
         obj.heros = heros;
+        this.setData(obj);*/
+
+        let team = event.currentTarget.dataset.team,
+            legion = this[`Legion${team}`],
+            heros = this.Heros;
+
+        legion.getLegionCloned().forEach(function(elem){
+            heros.quit(elem);
+        });
+        legion.clear();
+        let obj = {};
+        obj[`legion${team}`] = legion.getLegion();
+        obj.heros = heros.extract();
         this.setData(obj);
+        this.requestData();
     },
     openHeroPanel: function(event) {
         var legion = event.currentTarget.dataset.legion;
         console.log(legion)
         this.setData({
-            "heropicker": "ON",
-            legionOnHandle: legion
-        })
+            "heropicker": "ON"
+        });
+        this.legionOnHandle = legion;
     },
 
     hero_item_tap_handler2: function(event){
-        let id = event.currentTarget.id,
-            heros = this.data.heros,
-            model_old = heros[id],
-            legion_num = this.data.legionOnHandle,
-            legion_member = this.data[`legion${legion_num}_member`],
-            change = false;
-            console.log(legion_member)
+        let hero = event.currentTarget.id,
+            heros = this.Heros,
+            l = this.legionOnHandle,
+            legion = this[`Legion${l}`];
 
-        if (model_old.legion) {
-            if (model_old.legion == legion_num) {
-                change = true;
-                model_old.legion = undefined;
-                legion_member -= 1;
+        try
+        {
+            if(legion.has(hero)){
+                legion.del(hero);
+                heros.quit(hero);
+            }else{
+                legion.push(hero);
+                heros.enroll(hero, l);
             }
-        } else{
-            if(legion_member < 5){
-                change = true;
-                model_old.legion = legion_num;
-                legion_member += 1;
-            }  
-        }
-        if(change){
-            let obj = {},
-                heros_new = app.cloneObject(heros),
-                model_new = app.cloneObject(model_old);
-            
-            heros_new[id] = model_new;
-            obj.heros = heros_new;
-            obj[`legion${legion_num}_member`] = legion_member;
-             console.log(obj)
+
+            let obj = {};
+            //obj[`legion${l}`] = legion.getLegion();
+            obj.heros = heros.extract();
             this.setData(obj);
         }
+        catch(err){
+            console.error(err);
+        }
+       
     },
     hero_recommand_handler: function(event){
-      console.log("recommandlist clink!!!!")
         let hero = event.currentTarget.dataset.recommand,
-            heros = this.data.heros,
-            model_old = heros[hero],
-            legion_old = this.data.legion1,
-            legion_new = [],
-            legion_enemy = this.data.legion2,
-            that = this,
-            obj = {},
-            heros_new = app.cloneObject(heros),
-            model_new,
-            legion_member = this.data.legion1_member;
+            heros = this.Heros,
+            legion = this.Legion1;
+        if(legion.has(hero))return;
+        try{
+            legion.push(hero);
+            heros.enroll(hero, 1);
 
-        if(legion_member >= 5 || legion_old.some((elem)=>{return elem === hero;}) || legion_enemy.some((elem)=>{return elem === hero;})){
-            return ;
+            this.requestData();
+
+            this.setData({
+                legion1: legion.getLegion(),
+                heros: heros.extract()
+            })
+        }catch(err){
+            console.error(err);
         }
 
-        for (var i = 0; i < 5; i++) {
-            if(legion_old[i]){
-                legion_new[i] = legion_old[i];
-            }else{
-                legion_new[i] = hero;
-                break;
-            }
-        }
-
-        this.requestData(legion_new, legion_enemy);
-
-
-        app.fillBlank(legion_new, 5);
-
-        model_old.legion = 1;
-        model_new = app.cloneObject(model_old)
-        heros_new[hero] = model_new;
-        obj.heros = heros_new;
-        obj.legion1 = legion_new;
-        obj.legion1_member = legion_member + 1;
-        this.setData(obj);
     },
     closeInfoLayer: function(event){
         let layer_state = this.data.informationLayer,
@@ -171,61 +156,35 @@ Page({
     },
     closepanel: function(event) {
         if (event.target.id == "HeroPanel") {
-            let heros = this.data.heros,
-                legion = [],
-                legion_num = this.data.legionOnHandle,
-                legion_old = this.data[`legion${legion_num}`],
-                legion_enemy = this.data[`legion${legion_num == 1?2:1}`],
-                that = this,
-                change = false;
 
-            for(let idx in heros){
-                let hero = heros[idx]; 
-                if(hero.legion == legion_num){
-                    legion.push(hero.name);
-                }
-            }
+            let l = this.legionOnHandle,
+                legion = this[`Legion${l}`],
+                legion_old = this.data[`legion${l}`];
 
-            let real_l = app.getRealLength(legion_old);
-            console.log(`real_l${real_l}`);
-            if(legion.length !== real_l){
-                change = true;
-            }else{
-                for(let len = legion.length, i=0; i< len; i++){
-                    let hero = legion[i]; 
-                    if(!legion_old.some((elem) =>{return elem == hero})){
-                        change = true;
-                        break;
-                    }
-                }
-            }  
-            
             let obj = {
                 "heropicker": "OFF"
             };
 
-            if(!change){
+            let arr = [];
+            legion_old.forEach((elem) =>{
+                if(elem)
+                    arr.push(elem);
+            })
+            if(!legion.compareTo(arr)){
                 this.setData(obj);
                 return;
             }
-            //let enemy_list = app.truncateBlank(legion_enemy);
 
-            console.log(`legion${legion}`)
-            console.log(`enemy_list${legion_enemy}`);
-            if(legion_num == 1){
-                this.requestData(legion, legion_enemy);
-            }else{
-                this.requestData(legion_enemy, legion);
-            }
-            
-            //Teammate=viper,sven,puck,tiny&Enemy=axe,treant,meepo 
+            let legion_enemy = this[`Legion${l == 1?2:1}`];
+            console.log(legion, legion_enemy);
+                
+            this.requestData();
 
-            app.fillBlank(legion, 5);     
-            obj[`legion${legion_num}`] = legion;
+            obj[`legion${l}`] = legion.getLegion();
             this.setData(obj);
         }
     },
-    requestData: function(legion, legion_enemy){
+    requestData: function(){
         this.setData({
             informationLayer: {
                 state: "ON",
@@ -238,7 +197,9 @@ Page({
             p2 = false,
             p1f = false,
             p2f = false,
-            that = this;
+            that = this,
+            legion = this.Legion1.getLegionCloned(),
+            legion_enemy = this.Legion2.getLegionCloned();
         var resolve = function(){
           console.log(p1, p2);
             if(p1 && p2){
@@ -288,14 +249,14 @@ Page({
         wx.request({
             url: "https://ddsupport.xyz/data/recommend",
             data: {
-                Teammate: app.truncateBlank(legion),
-                Enemy: app.truncateBlank(legion_enemy)
+                Teammate: legion.join(','),
+                Enemy: legion_enemy.join(',')
             },
             header: {
                 'content-type': 'application/json'
             },
             success: function(res) {
-                console.log(`recommand:${res.data}`);
+                //console.log(`recommand:${res.data}`);
                 that.setData({
                     recommandlist: res.data
                 });
@@ -313,14 +274,14 @@ Page({
         wx.request({
             url: "https://ddsupport.xyz/data/grid",
             data: {
-                Teammate: app.truncateBlank(legion),
-                Enemy: app.truncateBlank(legion_enemy)
+                Teammate: legion.join(','),
+                Enemy: legion_enemy.join(',')
             },
             header: {
                 'content-type': 'application/json'
             },
             success: function(res) {
-                console.log(`grid:${res.data}`);
+                //console.log(`grid:${res.data}`);
                 let mat, grade;
                 [mat, grade] = that.calculateTeamMatrix(legion, legion_enemy, res.data);
                 console.log(mat, grade);
@@ -342,14 +303,14 @@ Page({
         wx.request({
             url: "https://ddsupport.xyz/data/score",
             data: {
-                Teammate: app.truncateBlank(legion),
-                Enemy: app.truncateBlank(legion_enemy)
+                Teammate: legion.join(','),
+                Enemy: legion_enemy.join(',')
             },
             header: {
                 'content-type': 'application/json'
             },
             success: function(res) {
-                console.log(`score:${res.data}`);
+               // console.log(`score:${res.data}`);
 
                 resolve(res.data);
             },
@@ -364,7 +325,7 @@ Page({
     estimate: function(){
       var that = this;
         
-        if(this.data.legion1_member === 0 || this.data.legion1_member === 0 ){
+        if(this.Legion1.length === 0 || this.Legion2.length === 0 ){
             return;
         }
         this.setData({
@@ -394,7 +355,10 @@ Page({
 
         }
 
-        this.requestForEstimation(this.data.legion1, this.data.legion2, resolve, reject)
+        this.requestForEstimation(
+            this.Legion1.getLegionCloned(), 
+            this.Legion2.getLegionCloned(),
+            resolve, reject)
         
     },
     backtoRival: function(){
@@ -406,6 +370,9 @@ Page({
         var that = this,
             mat, grade;
             //调用应用实例的方法获取全局数据
+        this.setData({
+            heros: this.Heros.extract()
+        });
         app.getUserInfo(function(userInfo) {
             //更新数据
             that.setData({
