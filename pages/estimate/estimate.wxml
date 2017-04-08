@@ -2,6 +2,7 @@
 	<view class="against-chart">
 		<view class="chart-background">
 			<view class="chart-pin" style="transform:translate({{pinTrans}}px, -35rpx);">
+				<image class="chart-pin-image" src="../../image/pin.png"></image>
 				<view class="chart-pin-score">{{runningScore}}</view>
 			</view>
 			<view class="chart-consclusion">
