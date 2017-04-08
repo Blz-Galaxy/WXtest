@@ -1,0 +1,5 @@
+<template name="user_sidebar">
+	<view class="hero_item" bindtap="hero_item_tap_handler2">
+		
+	</view>
+</template>

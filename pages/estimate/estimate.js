@@ -1,12 +1,17 @@
-const app = getApp();
 
+const app = getApp();
+const util = require("./util");
 
 Page({
 	data: {
 		estimateScore: {},
 		donatePanel: false,
-		modalAnimationData: {}
+		modalAnimationData: {},
+		runningScore: 0.0,
+		pinTrans: 0,
+		consclusion: ""
 	},
+	chart: {},
 	onShow: function(){
 		this.setData({
 	        estimateScore: app.globalData.estimateScore,
@@ -25,6 +30,40 @@ Page({
                 userInfo: userInfo
             })*/
         });
+	},
+	showScore: function(){
+		let score = this.data.estimateScore.score;
+		let desc = this.data.estimateScore.desc;
+		let that = this;
+		this.setData({
+			pinTrans: score - 5
+		});
+		let timeall = 600;
+		let startTime = Date.now();
+		let last_now = startTime;
+		let targetTime = last_now + timeall;
+		let easeOut = util.easeOutQuart;
+		function changeScore(){
+			if(last_now > targetTime) {
+				that.setData({
+					runningScore: (score - 5).toFixed(2),
+					consclusion: desc 
+				});
+				return
+			}
+			setTimeout(()=>{
+				let now = Date.now();
+				let t = (now - startTime) / timeall;
+				let s = easeOut(t) * (score - 5);
+
+				that.setData({
+					runningScore: s.toFixed(2)
+				});
+				last_now = now;
+				changeScore();
+			});
+		}
+		changeScore();
 	},
 	goback: function(){
 		/*this.setData({
@@ -51,10 +90,11 @@ Page({
 	    		donatePanel: false
 	    	})
 	    }.bind(this), 400);
-		
+		this.showScore();
 	},
 	donateCallback: function(){
 		console.log(this.nonceStr(20));
+		
 		/*wx.requestPayment({
 			'timeStamp': Date.now(),
 			'nonceStr': this.nonceStr(20),

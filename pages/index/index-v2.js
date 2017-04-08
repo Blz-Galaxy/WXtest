@@ -20,8 +20,6 @@ Page({
         legion1: [undefined, undefined, undefined, undefined, undefined],
         legion2: [undefined, undefined, undefined, undefined, undefined],
         legionOnHandle: 1,
-        legion1_member: 0, 
-        legion2_member: 0, 
         heros: heroes,
         relationMat: [
                 [undefined, undefined, undefined, undefined, undefined],

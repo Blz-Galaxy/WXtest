@@ -44,6 +44,8 @@ Page({
         },
         estimateAnimation: {},
         animated: false,
+        refreshAnimation_legion1: {},
+        refreshAnimation_legion2: {},
         rivalAnimation: {}
     },
     Legion1: Legion(5),
@@ -57,31 +59,11 @@ Page({
         })
     },
     clearHero: function(event){
-        /*let team = event.currentTarget.dataset.team;
-        let obj = {};
-        let cloneObject = app.cloneObject;
-        let heros = cloneObject(this.data.heros);
-        let legion_old =  this.data[`legion${team}`];
-
-        if( this.data[`legion${team}_member`] === 0) return;
-
-        legion_old.forEach((elem) => {
-            if(elem){
-              let hero = cloneObject(heros[elem]);
-              hero.legion = undefined;
-              heros[elem] = hero;
-            }
-        });
-
-        obj[`legion${team}`] = [undefined, undefined, undefined, undefined, undefined];
-        obj[`legion${team}_member`] = 0;
-        obj.heros = heros;
-        this.setData(obj);*/
-
         let team = event.currentTarget.dataset.team,
             legion = this[`Legion${team}`],
             heros = this.Heros;
 
+        if(legion.length == 0) return;
         legion.getLegionCloned().forEach(function(elem){
             heros.quit(elem);
         });
@@ -89,6 +71,17 @@ Page({
         let obj = {};
         obj[`legion${team}`] = legion.getLegion();
         obj.heros = heros.extract();
+        
+        
+        let animation = wx.createAnimation({
+            transformOrigin: "50% 50%",
+            duration: 0.4,
+            timingFunction: "linear",
+            delay: 0
+        });
+        animation.rotateZ(180).step();
+        animation.rotateZ(180).step();
+        obj[`refreshAnimation_legion${team}`] = animation.export();
         this.setData(obj);
         this.requestData();
     },
@@ -428,7 +421,9 @@ Page({
                     }
                        
                     if(res === 1){
-                      
+                        grid[i][j] = {
+                            team: 0
+                        }
                     }
 
                     if(res === 2){
@@ -465,22 +460,3 @@ Page({
     }
         
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

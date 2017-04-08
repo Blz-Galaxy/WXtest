@@ -29,7 +29,7 @@
   	    </view>
     </view>
     <view class="refresh refresh-t1" data-team="1" bindtap="clearHero">
-      <image src="../../image/refresh.svg"></image>
+      <image src="../../image/refresh.svg" animation="{{refreshAnimation_legion1}}"></image>
     </view>
 
     <view bindtap="estimate" class="vslogo">
@@ -39,7 +39,7 @@
         <text>敌方队伍</text>
     </view>
     <view class="refresh refresh-t2" data-team="2" bindtap="clearHero">
-       <image src="../../image/refresh.svg"></image>
+       <image src="../../image/refresh.svg" animation="{{refreshAnimation_legion2}}"></image>
     </view>
     <!--敌方队伍-->
     <view class="table-like-view" data-legion="2" bindtap="openHeroPanel">
@@ -83,7 +83,7 @@
     				<view class="table-like-cell small-cell default-border">
     					<image wx:if="{{cell && cell.team == 1}}" class="icon legion1_win" src="{{heros[cell.hero].url}}"></image>
     					<image wx:if="{{cell && cell.team == 2}}" class="icon legion2_win" src="{{heros[cell.hero].url}}"></image>
-    					<image wx:if="{{cell && cell.team == 0}}" class="icon" src="{{heros[cell.hero].url}}"></image>
+    					<image wx:if="{{cell && cell.team == 0}}" class="icon" src="../../image/facewhite.png"></image>
     				</view>
     			</block>
     		</view>

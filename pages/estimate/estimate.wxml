@@ -1,7 +1,15 @@
 <view class="container">
-	<text>{{estimateScore.score}}</text>
-	<text>{{estimateScore.desc}}</text>
-		
+	<view class="against-chart">
+		<view class="chart-background">
+			<view class="chart-pin" style="transform:translate({{pinTrans}}px, -35rpx);">
+				<view class="chart-pin-score">{{runningScore}}</view>
+			</view>
+			<view class="chart-consclusion">
+				{{consclusion}}
+			</view>
+		</view>
+	</view>
+
 	<!--<button bindtap="donate"> 捐赠 </button>-->
 	<button bindtap="goback"> 返回 </button>
 
