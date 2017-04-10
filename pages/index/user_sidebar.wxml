@@ -1,5 +1,13 @@
 <template name="user_sidebar">
-	<view class="hero_item" bindtap="hero_item_tap_handler2">
-		
+	<view wx:if="{{userSideBarState}}" 
+		class="user_sidebar_toggle_layer"
+		style="{{userSideBarState?'opacity:0.6':'opacity: 0'}}" 
+		bindtap="toggleUserSideBar"></view>
+	<view class="user_sidebar" 
+		style="{{userSideBarState?'transform: translateX(0)':''}}">
+		<view wx:if="{{!userSideBarState}}" class="user_sidebar_toggle_btn" bindtap="toggleUserSideBar">	
+		</view>
+
 	</view>
+
 </template>

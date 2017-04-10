@@ -46,7 +46,8 @@ Page({
         animated: false,
         refreshAnimation_legion1: {},
         refreshAnimation_legion2: {},
-        rivalAnimation: {}
+        rivalAnimation: {},
+        userSideBarState: false
     },
     Legion1: Legion(5),
     Legion2: Legion(5),
@@ -57,6 +58,11 @@ Page({
         wx.navigateTo({
             url: '../logs/logs'
         })
+    },
+    toggleUserSideBar: function(){
+        this.setData({
+            userSideBarState: !this.data.userSideBarState
+        });
     },
     clearHero: function(event){
         let team = event.currentTarget.dataset.team,
@@ -98,10 +104,12 @@ Page({
         let hero = event.currentTarget.id,
             heros = this.Heros,
             l = this.legionOnHandle,
-            legion = this[`Legion${l}`];
-
+            legion = this[`Legion${l}`],
+            legion_other = this[`Legion${l==1?2:1}`];
         try
         {
+            if(legion_other.has(hero)) return;
+
             if(legion.has(hero)){
                 legion.del(hero);
                 heros.quit(hero);

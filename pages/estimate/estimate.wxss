@@ -36,6 +36,11 @@
 	background-color: rgba(70,175,95,0.9);
 	color: #fff;
 }
+.btn-back{
+	width: 100%;
+	background-color: rgba(70,175,95,0.9);
+	color: #fff;
+}
 .btn.btn-not{
 	background-color: #fff;
 	color: #000;
@@ -87,3 +92,4 @@
 	width: 100%;
 	font-size: 42rpx;
 }
+

@@ -1,5 +1,7 @@
 <!--index.wxml-->
 <import src="hero_item.wxml"/>
+<import src="user_sidebar.wxml"/>
+
 <!--<view wx:if="{{estimateScore.visible}}" class="estimatePanel {{animated?'estimateAnimated':''}}" animation="{{estimateAnimation}}" bindtap="backtoRival">
   <text>{{estimateScore.score}}</text>
   <text>{{estimateScore.msg}}</text>
@@ -189,3 +191,4 @@
   		<text>{{informationLayer.msg}}</text>
   </view>
 </view>
+<template is="user_sidebar" data="{{userInfo, userSideBarState}}"></template>

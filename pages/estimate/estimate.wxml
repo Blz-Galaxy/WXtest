@@ -12,7 +12,7 @@
 	</view>
 
 	<!--<button bindtap="donate"> 捐赠 </button>-->
-	<button bindtap="goback"> 返回 </button>
+	<button type="primary" bindtap="goback"> 返回 </button>
 
 	<view wx:if="{{donatePanel}}" class="popup">
 		<view class="modal"  animation="{{modalAnimationData}}">
