@@ -6,8 +6,13 @@
 	<view class="user_sidebar" 
 		style="{{userSideBarState?'transform: translateX(0)':''}}">
 		<view wx:if="{{!userSideBarState}}" class="user_sidebar_toggle_btn" bindtap="toggleUserSideBar">	
+			<image class="user_icon" src="../../image/user.png"/>
 		</view>
 
+		<view class="avatar-zone">
+			<image class="avatarImage" src="{{userInfo.avatarUrl}}"/>
+			<text>{{userInfo.nickName}}</text>
+		</view>
 	</view>
 
 </template>

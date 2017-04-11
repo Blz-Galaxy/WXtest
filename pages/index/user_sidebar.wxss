@@ -2,7 +2,7 @@
 	position: fixed;
 	left: 0;
 	top: 0;
-	width: 400rpx;
+	width: 360rpx;
 	height: 100%;
 	background-color: rgb(29,30,25);
 	transform: translateX(-400rpx);
@@ -14,6 +14,9 @@
 	height: 50rpx;
 	left: 400rpx;
 	top: 100rpx;
+	padding: 1rpx;
+	border-bottom-right-radius: 100%;
+	border-top-right-radius: 100%;
 	background-color: #e6e6e6;
 }
 .user_sidebar_toggle_layer{
@@ -25,4 +28,20 @@
 	background-color: black;
 	opacity: 0;
 	transition: opacity .3s ease-out;
+}
+.user_icon{
+	width: 48rpx;
+	height: 48rpx;
+}
+.avatar-zone{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20rpx;
+}
+.avatar-zone > .avatarImage{
+	width: 128rpx;
+	height: 128rpx;
+	border-radius: 100%;
 }
