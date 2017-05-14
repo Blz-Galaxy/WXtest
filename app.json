@@ -1,10 +1,8 @@
 {
   "pages":[
-    
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/estimate/estimate"
-    
+    "pages/estimate/estimate", 
+    "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",

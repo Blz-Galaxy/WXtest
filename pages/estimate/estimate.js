@@ -1,6 +1,7 @@
 
 const app = getApp();
 const util = require("./util");
+const raid = require("./raid-figure");
 
 Page({
 	data: {
@@ -18,12 +19,19 @@ Page({
 	        donatePanel: true,
 	        modalAnimationData: {}
 	    });
+	    this.chart.legion1 = new raid({
+			el: "raidfigure",
+			center: {x: 80, y: 80},
+			data: [2,4,3,5,4,1,2,5,3]
+		});
+		this.chart.legion1.draw();
 	    wx.setNavigationBarTitle({
 	    	title: "结果"
 	    })
 	},
 	onLoad: function(){
 		console.log("estimate onLoad");
+
 		app.getUserInfo(function(userInfo) {
             //更新数据
             /*that.setData({
@@ -65,6 +73,7 @@ Page({
 		}
 		changeScore();
 	},
+
 	goback: function(){
 		/*this.setData({
 			donatePanel: true
@@ -110,7 +119,17 @@ Page({
 
 		})*/
 	},
-
+	recogonizeCode: function(){
+		console.log("long tap");
+		wx.scanCode({
+			success: function(res){
+				console.log(res);
+			},
+			fail: function(err){
+				console.log(err);
+			}
+		});
+	},
 	nonceStr: function(length){
 		var base = 'abcdefghijklmnopqrstuvwxyz0123456789';
 		var code = '';

@@ -31,6 +31,7 @@
 }
 .btn{
 	display: inline-block;
+	font-size: 36rpx;
 }
 .btn.btn-ok{
 	background-color: rgba(70,175,95,0.9);
@@ -92,4 +93,5 @@
 	width: 100%;
 	font-size: 42rpx;
 }
+
 

@@ -9,11 +9,13 @@
 				{{consclusion}}
 			</view>
 		</view>
+		<view>
+			<canvas canvas-id="raidfigure" style="width: 200px: height: 200px;"></canvas>
+		</view>
 	</view>
 
-	<!--<button bindtap="donate"> 捐赠 </button>-->
 	<button type="primary" bindtap="goback"> 返回 </button>
-
+	
 	<view wx:if="{{donatePanel}}" class="popup">
 		<view class="modal"  animation="{{modalAnimationData}}">
 			<text>喜欢的话就请打赏我们一下吧~</text>

@@ -138,11 +138,11 @@
 	   -moz-transform: skew(15deg);
 	     -o-transform: skew(15deg);
 	box-shadow: 0 0 40rpx rgba(0,0,0,0.8);
-	animation-name:flash_legion1;
+	/*animation-name:flash_legion1;
 	animation-duration: 2s;
 	animation-timing-function: ease-out;
 	animation-direction: alternate;
-	animation-iteration-count: infinite;
+	animation-iteration-count: infinite;*/
 }
 .hero-avatar > .icon{
 	-webkit-transform: skew(-15deg) scale(1.2);
@@ -155,11 +155,11 @@
 	   -moz-transform: skew(-15deg);
 	     -o-transform: skew(-15deg);
 	box-shadow: 0 0 20rpx rgba(0,0,0,0.8);   
-	animation-name:flash_legion2;
+	/*animation-name:flash_legion2;
 	animation-duration: 2s;
 	animation-timing-function: ease-out;
 	animation-direction: alternate;
-	animation-iteration-count: infinite;  
+	animation-iteration-count: infinite; */ 
 }
 .hero-avatar-inverse > .icon{
 	-webkit-transform: skew(15deg) scale(1.2);
