@@ -9,8 +9,9 @@
 				{{consclusion}}
 			</view>
 		</view>
-		<view>
-			<canvas canvas-id="raidfigure" style="width: 200px: height: 200px;"></canvas>
+		<view style="margin-top:50rpx;">
+			<canvas style="display:inline-block;width: 150px; height: 200px;" canvas-id="raidfigure"></canvas>
+			<canvas style="display:inline-block;width: 150px; height: 200px;" canvas-id="raidfigure2"></canvas>
 		</view>
 	</view>
 

@@ -380,6 +380,7 @@ Page({
             app.globalData.estimateScore = data;
             app.globalData.legion1 = this.data.legion1;
             app.globalData.legion2 = this.data.legion2;
+            console.log( app.globalData.legion1,  app.globalData.legion2)
             wx.navigateTo({
                 url: '../estimate/estimate'
             });

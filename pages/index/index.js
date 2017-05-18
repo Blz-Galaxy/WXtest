@@ -347,6 +347,8 @@ Page({
                   }
             });
             app.globalData.estimateScore = data;
+            app.globalData.legion1 = that.data.legion1;
+            app.globalData.legion2 = that.data.legion2;
             wx.navigateTo({
                 url: '../estimate/estimate'
             });

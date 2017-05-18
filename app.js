@@ -30,7 +30,9 @@ App({
         estimateScore: {
             score: 10,
             desc: "可能要跪"
-        }
+        },
+        legion1:[],
+        legion2:[]
     },
     cloneObject: function(src) {
         var target = {};

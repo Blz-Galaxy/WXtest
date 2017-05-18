@@ -3,6 +3,7 @@ const app = getApp();
 const util = require("./util");
 const raid = require("./raid-figure");
 
+
 Page({
 	data: {
 		estimateScore: {},
@@ -19,12 +20,20 @@ Page({
 	        donatePanel: true,
 	        modalAnimationData: {}
 	    });
+	    
 	    this.chart.legion1 = new raid({
 			el: "raidfigure",
 			center: {x: 80, y: 80},
-			data: [2,4,3,5,4,1,2,5,3]
+			data: app.globalData.legion1,
+			color: "green"
 		});
-		this.chart.legion1.draw();
+
+		 this.chart.legion2 = new raid({
+			el: "raidfigure2",
+			center: {x: 80, y: 80},
+			data: app.globalData.legion2,
+			color: "red"
+		});
 	    wx.setNavigationBarTitle({
 	    	title: "结果"
 	    })
@@ -100,6 +109,8 @@ Page({
 	    	})
 	    }.bind(this), 400);
 		this.showScore();
+		this.chart.legion1.drawData();
+		this.chart.legion2.drawData();
 	},
 	donateCallback: function(){
 		console.log(this.nonceStr(20));
