@@ -8,7 +8,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#333",
-    "navigationBarTitleText": "Dota2 Assistant",
+    "navigationBarTitleText": "DotaX阵容大师",
     "navigationBarTextStyle":"#ddd",
     "backgroundColor": "#212121"
   }
