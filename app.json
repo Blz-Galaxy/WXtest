@@ -9,7 +9,7 @@
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#333",
     "navigationBarTitleText": "DotaX阵容大师",
-    "navigationBarTextStyle":"#ddd",
+    "navigationBarTextStyle":"white",
     "backgroundColor": "#212121"
   }
 }
